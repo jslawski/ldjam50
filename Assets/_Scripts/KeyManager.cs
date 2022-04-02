@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class KeyManager : MonoBehaviour
@@ -51,6 +52,11 @@ public class KeyManager : MonoBehaviour
 
     void UpdateInput()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(0);
+        }
+
         if (Input.GetKeyDown(upperLeft))
         {
             balloonKeys[upperLeft] = true;
