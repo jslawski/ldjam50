@@ -7,9 +7,9 @@ public class KeyManager : MonoBehaviour
 {
     Dictionary<KeyCode, bool> balloonKeys;
 
-    public const KeyCode upperLeft = KeyCode.E;
-    public const KeyCode left = KeyCode.D;
-    public const KeyCode lowerLeft = KeyCode.C;
+    public const KeyCode upperLeft = KeyCode.T;
+    public const KeyCode left = KeyCode.G;
+    public const KeyCode lowerLeft = KeyCode.B;
     public const KeyCode upperRight = KeyCode.O;
     public const KeyCode right = KeyCode.K;
     public const KeyCode lowerRight = KeyCode.M;
