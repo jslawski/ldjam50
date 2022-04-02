@@ -17,6 +17,9 @@ public class BalloonPhysics : MonoBehaviour
     private float forceMagnitude = 5f;
     private float dragMagnitude = 1f;
 
+    [SerializeField]
+    private List<ParticleSystem> propulsionParticles;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,5 +55,72 @@ public class BalloonPhysics : MonoBehaviour
     {
         Vector3 dragDirection = -this.balloonRb.velocity;
         this.balloonRb.AddForce(dragDirection * dragMagnitude);
+    }
+
+    public void ToggleBalloonParticles(KeyCode direction, bool active)
+    {
+        switch (direction)
+        {
+            case KeyManager.upperLeft:
+                if (active)
+                {
+                    this.propulsionParticles[0].Play();
+                }
+                else
+                {
+                    this.propulsionParticles[0].Stop();
+                }
+                break;
+            case KeyManager.left:
+                if (active)
+                {
+                    this.propulsionParticles[1].Play();
+                }
+                else
+                {
+                    this.propulsionParticles[1].Stop();
+                }
+                break;
+            case KeyManager.lowerLeft:
+                if (active)
+                {
+                    this.propulsionParticles[2].Play();
+                }
+                else
+                {
+                    this.propulsionParticles[2].Stop();
+                }
+                break;
+            case KeyManager.upperRight:
+                if (active)
+                {
+                    this.propulsionParticles[3].Play();
+                }
+                else
+                {
+                    this.propulsionParticles[3].Stop();
+                }
+                break;
+            case KeyManager.right:
+                if (active)
+                {
+                    this.propulsionParticles[4].Play();
+                }
+                else
+                {
+                    this.propulsionParticles[4].Stop();
+                }
+                break;
+            case KeyManager.lowerRight:
+                if (active)
+                {
+                    this.propulsionParticles[5].Play();
+                }
+                else
+                {
+                    this.propulsionParticles[5].Stop();
+                }
+                break;
+        }
     }
 }

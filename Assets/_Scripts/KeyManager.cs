@@ -105,6 +105,11 @@ public class KeyManager : MonoBehaviour
             if (entry.Value == false)
             {
                 this.bPhysics.ApplyBalloonPhysics(entry.Key);
+                this.bPhysics.ToggleBalloonParticles(entry.Key, true);
+            }
+            else
+            {
+                this.bPhysics.ToggleBalloonParticles(entry.Key, false);
             }
         }
 
