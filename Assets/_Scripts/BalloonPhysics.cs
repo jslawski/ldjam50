@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEngine.ParticleSystem;
 
@@ -49,6 +50,9 @@ public class BalloonPhysics : MonoBehaviour
 
     private bool dead = false;
 
+    public delegate void OnLevelFinished();
+    public static OnLevelFinished LevelFinished;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,10 +66,15 @@ public class BalloonPhysics : MonoBehaviour
         this.balloonTransform.localScale = Vector3.Lerp(this.minScale, this.maxScale, this.airLevel / this.maxAirLevel);
         this.balloonRb.mass = Mathf.Lerp(this.minMass, this.maxMass, this.airLevel / this.maxAirLevel);
 
-        if (this.airLevel < 0)
+        if (this.airLevel < 0 && this.dead == false)
         {
             this.balloonRb.useGravity = true;
-            this.balloonRb.mass = 10f;
+            this.balloonRb.mass = 20f;
+            this.dead = true;
+
+            //this.balloonRb.AddForce( * 10.0f, ForceMode.Impulse);
+
+            StartCoroutine(ResetLevel());
         }
     }
 
@@ -94,27 +103,16 @@ public class BalloonPhysics : MonoBehaviour
                 this.balloonRb.AddForce(this.upLeft.normalized * forceMagnitude);
                 this.airLevel -= this.drainRate;
                 break;
-                //case KeyManager.left:
-                //  this.balloonRb.AddForce(this.right.normalized * forceMagnitude);
-                //  break;
-
-                //case KeyManager.right:
-                //   this.balloonRb.AddForce(this.left.normalized * forceMagnitude);
-                //   break;
-
-                //case KeyManager.up:
-                //    this.balloonRb.AddForce(this.down.normalized * forceMagnitude);
-                //    break;
-                //case KeyManager.down:
-                //    this.balloonRb.AddForce(this.up.normalized * forceMagnitude);
-                //    break;
         }
     }
 
     public void ApplyBalloonDrag()
     {
-        this.balloonRb.AddForceAtPosition(Vector3.up * this.liftMagnitude,
-            this.balloonTransform.position + (Vector3.up * 2.0f));
+        if (this.dead == false)
+        {
+            this.balloonRb.AddForceAtPosition(Vector3.up * this.liftMagnitude,
+                this.balloonTransform.position + (Vector3.up * 2.0f));
+        }
 
         this.balloonRb.AddForceAtPosition(Vector3.down * this.knotGravityMagnitude, 
             this.balloonTransform.position + (Vector3.down * 2.0f));
@@ -220,7 +218,6 @@ public class BalloonPhysics : MonoBehaviour
 
     private void KillBalloon(Vector3 collisionPoint)
     {
-        this.dead = true;
         StartCoroutine(this.DefalteBalloon(collisionPoint));
     }
 
@@ -240,8 +237,6 @@ public class BalloonPhysics : MonoBehaviour
         {
             this.airLevel -= this.deflateRate;
 
-            //this.balloonRb.AddForce(-killDirection.normalized * this.deflateMagnitude);
-
             this.balloonRb.AddForceAtPosition(-killDirection.normalized * this.deflateMagnitude,
             this.balloonTransform.position + (Vector3.up * 5.0f));
 
@@ -249,14 +244,28 @@ public class BalloonPhysics : MonoBehaviour
         }
     }
 
+    private IEnumerator ResetLevel()
+    {
+        yield return new WaitForSeconds(2.0f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "hazard")
         {
             this.KillBalloon(collision.GetContact(0).point);
+        }     
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "finish")
+        {
+            if (LevelFinished != null)
+            {
+                LevelFinished();
+            }
         }
-        
-        //Vector3 bounceDirection = -this.balloonRb.velocity;
-        //this.balloonRb.AddForceAtPosition(bounceDirection * this.bounceMagnitude, collision.GetContact(0).point, ForceMode.Impulse);
     }
 }
