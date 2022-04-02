@@ -7,13 +7,14 @@ public class KeyManager : MonoBehaviour
 {
     Dictionary<KeyCode, bool> balloonKeys;
 
-    static KeyCode upperLeft = KeyCode.E;
-    static KeyCode left = KeyCode.D;
-    static KeyCode lowerLeft = KeyCode.C;
-    static KeyCode upperRight = KeyCode.O;
-    static KeyCode right = KeyCode.K;
-    static KeyCode lowerRight = KeyCode.M;
+    public const KeyCode upperLeft = KeyCode.E;
+    public const KeyCode left = KeyCode.D;
+    public const KeyCode lowerLeft = KeyCode.C;
+    public const KeyCode upperRight = KeyCode.O;
+    public const KeyCode right = KeyCode.K;
+    public const KeyCode lowerRight = KeyCode.M;
 
+    [SerializeField]
     private BalloonPhysics bPhysics;
 
     // Start is called before the first frame update
@@ -37,6 +38,10 @@ public class KeyManager : MonoBehaviour
     void Update()
     {
         this.UpdateInput();
+    }
+
+    private void FixedUpdate()
+    {
         this.ApplyBalloonPhysics();
     }
 
@@ -102,5 +107,7 @@ public class KeyManager : MonoBehaviour
                 this.bPhysics.ApplyBalloonPhysics(entry.Key);
             }
         }
+
+        this.bPhysics.ApplyBalloonDrag();
     }
 }

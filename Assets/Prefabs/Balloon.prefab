@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 415109c947f5ea742a5796b2f6f26658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bPhysics: {fileID: 1332624572341605592}
 --- !u!114 &1332624572341605592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,4 +139,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a144389bd2d71047b7555501e5456ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  balloonRb: {fileID: 0}
+  balloonRb: {fileID: 7319583285516090735}
