@@ -7,12 +7,14 @@ public class KeyManager : MonoBehaviour
 {
     Dictionary<KeyCode, bool> balloonKeys;
 
-    public const KeyCode upperLeft = KeyCode.T;
-    public const KeyCode left = KeyCode.G;
-    public const KeyCode lowerLeft = KeyCode.B;
+    public const KeyCode upperLeft = KeyCode.W;
+    public const KeyCode left = KeyCode.Alpha9;
+    public const KeyCode lowerLeft = KeyCode.D;
     public const KeyCode upperRight = KeyCode.O;
-    public const KeyCode right = KeyCode.K;
-    public const KeyCode lowerRight = KeyCode.M;
+    public const KeyCode right = KeyCode.Alpha0;
+    public const KeyCode lowerRight = KeyCode.K;
+    public const KeyCode up = KeyCode.Alpha1;
+    public const KeyCode down = KeyCode.Alpha2;
 
     [SerializeField]
     private BalloonPhysics bPhysics;
@@ -32,6 +34,8 @@ public class KeyManager : MonoBehaviour
         balloonKeys.Add(upperRight, false);
         balloonKeys.Add(right, false);
         balloonKeys.Add(lowerRight, false);
+        balloonKeys.Add(up, false);
+        balloonKeys.Add(down, false);
     }
 
     // Update is called once per frame
@@ -71,6 +75,14 @@ public class KeyManager : MonoBehaviour
         {
             balloonKeys[lowerRight] = true;
         }
+        if (Input.GetKeyDown(up))
+        {
+            balloonKeys[up] = true;
+        }
+        if (Input.GetKeyDown(down))
+        {
+            balloonKeys[down] = true;
+        }
 
         if (Input.GetKeyUp(upperLeft))
         {
@@ -95,6 +107,14 @@ public class KeyManager : MonoBehaviour
         if (Input.GetKeyUp(lowerRight))
         {
             balloonKeys[lowerRight] = false;
+        }
+        if (Input.GetKeyUp(up))
+        {
+            balloonKeys[up] = false;
+        }
+        if (Input.GetKeyUp(down))
+        {
+            balloonKeys[down] = false;
         }
     }
 

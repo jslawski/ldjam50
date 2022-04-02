@@ -10,15 +10,19 @@ public class BalloonPhysics : MonoBehaviour
     private Vector3 downRight = new Vector3(1.0f, -1.0f, 0.0f);
     private Vector3 right = new Vector3(1.0f, 0.0f, 0.0f);
     private Vector3 upRight = new Vector3(1.0f, 1.0f, 0.0f);
+    private Vector3 down = new Vector3(0.0f, -1.0f, 0.0f);
     private Vector3 downLeft = new Vector3(-1.0f, -1.0f, 0.0f);
     private Vector3 left = new Vector3(-1.0f, 0.0f, 0.0f);
     private Vector3 upLeft = new Vector3(-1.0f, 1.0f, 0.0f);
+    private Vector3 up = new Vector3(0.0f, 1.0f, 0.0f);
 
     private float forceMagnitude = 5f;
     private float dragMagnitude = 1f;
 
     [SerializeField]
     private List<ParticleSystem> propulsionParticles;
+
+    //private float airLevel
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +51,12 @@ public class BalloonPhysics : MonoBehaviour
                 break;
             case KeyManager.lowerRight:
                 this.balloonRb.AddForce(this.upLeft.normalized * forceMagnitude);
+                break;
+            case KeyManager.up:
+                this.balloonRb.AddForce(this.down.normalized * forceMagnitude);
+                break;
+            case KeyManager.down:
+                this.balloonRb.AddForce(this.up.normalized * forceMagnitude);
                 break;
         }
     }
@@ -119,6 +129,26 @@ public class BalloonPhysics : MonoBehaviour
                 else
                 {
                     this.propulsionParticles[5].Stop();
+                }
+                break;
+            case KeyManager.up:
+                if (active)
+                {
+                    this.propulsionParticles[6].Play();
+                }
+                else
+                {
+                    this.propulsionParticles[6].Stop();
+                }
+                break;
+            case KeyManager.down:
+                if (active)
+                {
+                    this.propulsionParticles[7].Play();
+                }
+                else
+                {
+                    this.propulsionParticles[7].Stop();
                 }
                 break;
         }

@@ -913,6 +913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 415109c947f5ea742a5796b2f6f26658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bPhysics: {fileID: 0}
 --- !u!114 &1765232792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1109,7 +1110,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2036794220}
   m_CullTransparentMesh: 1
---- !u!1001 &4794576622280918142
+--- !u!1001 &2120377373
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
