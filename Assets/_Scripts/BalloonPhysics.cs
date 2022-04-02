@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BalloonPhysics : MonoBehaviour
 {
@@ -22,7 +23,11 @@ public class BalloonPhysics : MonoBehaviour
     [SerializeField]
     private List<ParticleSystem> propulsionParticles;
 
-    //private float airLevel
+    private float airLevel = 100f;
+    private float drainRate = 0.1f;
+
+    [SerializeField]
+    private Text tempAirLevelUI;
 
     // Start is called before the first frame update
     void Start()
@@ -30,34 +35,55 @@ public class BalloonPhysics : MonoBehaviour
          
     }
 
+    private void Update()
+    {
+        this.tempAirLevelUI.text = this.airLevel.ToString();
+
+        if (this.airLevel < 0)
+        {
+            this.balloonRb.useGravity = true;
+        }
+    }
+
     public void ApplyBalloonPhysics(KeyCode direction)
     {
+        if (this.airLevel < 0)
+        {
+            return;
+        }
+
         switch (direction)
         {
             case KeyManager.upperLeft:
                 this.balloonRb.AddForce(this.downRight.normalized * forceMagnitude);
-                break;
-            case KeyManager.left:
-                this.balloonRb.AddForce(this.right.normalized * forceMagnitude);
+                this.airLevel -= this.drainRate;
                 break;
             case KeyManager.lowerLeft:
                 this.balloonRb.AddForce(this.upRight.normalized * forceMagnitude);
+                this.airLevel -= this.drainRate;
                 break;
             case KeyManager.upperRight:
                 this.balloonRb.AddForce(this.downLeft.normalized * forceMagnitude);
-                break;
-            case KeyManager.right:
-                this.balloonRb.AddForce(this.left.normalized * forceMagnitude);
+                this.airLevel -= this.drainRate;
                 break;
             case KeyManager.lowerRight:
                 this.balloonRb.AddForce(this.upLeft.normalized * forceMagnitude);
+                this.airLevel -= this.drainRate;
                 break;
-            case KeyManager.up:
-                this.balloonRb.AddForce(this.down.normalized * forceMagnitude);
-                break;
-            case KeyManager.down:
-                this.balloonRb.AddForce(this.up.normalized * forceMagnitude);
-                break;
+                //case KeyManager.left:
+                //  this.balloonRb.AddForce(this.right.normalized * forceMagnitude);
+                //  break;
+
+                //case KeyManager.right:
+                //   this.balloonRb.AddForce(this.left.normalized * forceMagnitude);
+                //   break;
+
+                //case KeyManager.up:
+                //    this.balloonRb.AddForce(this.down.normalized * forceMagnitude);
+                //    break;
+                //case KeyManager.down:
+                //    this.balloonRb.AddForce(this.up.normalized * forceMagnitude);
+                //    break;
         }
     }
 
@@ -69,6 +95,14 @@ public class BalloonPhysics : MonoBehaviour
 
     public void ToggleBalloonParticles(KeyCode direction, bool active)
     {
+        if (this.airLevel < 0)
+        {
+            for (int i = 0; i < this.propulsionParticles.Count; i++)
+            {
+                this.propulsionParticles[i].Stop();
+            }
+        }
+
         switch (direction)
         {
             case KeyManager.upperLeft:
