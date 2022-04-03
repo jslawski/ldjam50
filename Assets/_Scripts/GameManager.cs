@@ -51,6 +51,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public List<int> GetTimerValues()
+    {
+        List<int> timerValues = new List<int>();
+
+        int minutesValue = Mathf.FloorToInt(this.timer / 60f);
+        timerValues.Add(minutesValue);
+
+        int secondsValue = Mathf.FloorToInt(this.timer - (minutesValue * 60));
+        timerValues.Add(secondsValue);
+
+        int millisecondsValue = (int)((this.timer - (minutesValue * 60) - secondsValue) * 100);
+        timerValues.Add(millisecondsValue);
+
+        return timerValues;
+    }
+
     private void SetupEndScreen()
     {
         this.endScreenObject.SetActive(true);
