@@ -4959,7 +4959,7 @@ MonoBehaviour:
   - {fileID: 7994370616557069990}
   deathParticles: {fileID: 208231806391662743}
   maxAirLevel: 100
-  drainRate: 0.08
+  drainRate: 0.05
 --- !u!1 &1494192031236316849
 GameObject:
   m_ObjectHideFlags: 0

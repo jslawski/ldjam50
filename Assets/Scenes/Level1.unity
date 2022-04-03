@@ -1670,6 +1670,10 @@ PrefabInstance:
       value: Balloon
       objectReference: {fileID: 0}
     - target: {fileID: 1332624572341605592, guid: 6ae4dda5949bb014a916b3315a308cfa, type: 3}
+      propertyPath: drainRate
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332624572341605592, guid: 6ae4dda5949bb014a916b3315a308cfa, type: 3}
       propertyPath: tempAirLevelUI
       value: 
       objectReference: {fileID: 2036455827}

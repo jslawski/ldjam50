@@ -22,6 +22,7 @@ public class BalloonPhysics : MonoBehaviour
     private Vector3 up = new Vector3(0.0f, 1.0f, 0.0f);
 
     private float forceMagnitude = 7f;
+    private float torqueMagnitude = 200f;
     private float dragMagnitude = 1f;
     private float liftMagnitude = 4f;
     private float knotGravityMagnitude = 2f;
@@ -66,8 +67,6 @@ public class BalloonPhysics : MonoBehaviour
             this.balloonRb.mass = 20f;
             this.dead = true;
 
-            //this.balloonRb.AddForce( * 10.0f, ForceMode.Impulse);
-
             StartCoroutine(ResetLevel());
         }
     }
@@ -81,20 +80,24 @@ public class BalloonPhysics : MonoBehaviour
 
         switch (direction)
         {
-            case KeyManager.upperLeft:
-                this.balloonRb.AddForce(this.downRight.normalized * forceMagnitude);
+            case KeyManager.upperLeft:       
+                this.balloonRb.AddRelativeForce(this.downRight.normalized * forceMagnitude);
+                this.balloonRb.AddRelativeTorque(Vector3.right * this.torqueMagnitude);
                 this.airLevel -= this.drainRate;
                 break;
             case KeyManager.lowerLeft:
-                this.balloonRb.AddForce(this.upRight.normalized * forceMagnitude);
+                this.balloonRb.AddRelativeForce(this.upRight.normalized * forceMagnitude);
+                this.balloonRb.AddRelativeTorque(Vector3.right * this.torqueMagnitude);
                 this.airLevel -= this.drainRate;
                 break;
             case KeyManager.upperRight:
-                this.balloonRb.AddForce(this.downLeft.normalized * forceMagnitude);
+                this.balloonRb.AddRelativeForce(this.downLeft.normalized * forceMagnitude);
+                this.balloonRb.AddRelativeTorque(Vector3.left * this.torqueMagnitude);
                 this.airLevel -= this.drainRate;
                 break;
             case KeyManager.lowerRight:
-                this.balloonRb.AddForce(this.upLeft.normalized * forceMagnitude);
+                this.balloonRb.AddRelativeForce(this.upLeft.normalized * forceMagnitude);
+                this.balloonRb.AddRelativeTorque(Vector3.left * this.torqueMagnitude);
                 this.airLevel -= this.drainRate;
                 break;
         }
