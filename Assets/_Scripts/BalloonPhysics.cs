@@ -45,9 +45,6 @@ public class BalloonPhysics : MonoBehaviour
     private float drainRate = 0.1f;
     private float deflateRate = 0.5f;
 
-    [SerializeField]
-    private Text tempAirLevelUI;
-
     private bool dead = false;
 
     public delegate void OnLevelFinished(int score);
@@ -61,8 +58,6 @@ public class BalloonPhysics : MonoBehaviour
 
     private void Update()
     {
-        this.tempAirLevelUI.text = this.airLevel.ToString();
-
         this.balloonTransform.localScale = Vector3.Lerp(this.minScale, this.maxScale, this.airLevel / this.maxAirLevel);
         this.balloonRb.mass = Mathf.Lerp(this.minMass, this.maxMass, this.airLevel / this.maxAirLevel);
 
