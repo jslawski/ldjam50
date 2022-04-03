@@ -50,7 +50,7 @@ public class BalloonPhysics : MonoBehaviour
 
     private bool dead = false;
 
-    public delegate void OnLevelFinished();
+    public delegate void OnLevelFinished(int score);
     public static OnLevelFinished LevelFinished;
 
     // Start is called before the first frame update
@@ -264,7 +264,8 @@ public class BalloonPhysics : MonoBehaviour
         {
             if (LevelFinished != null)
             {
-                LevelFinished();
+                Debug.LogError("Called");
+                LevelFinished(100 - Mathf.CeilToInt(this.airLevel));
             }
         }
     }
