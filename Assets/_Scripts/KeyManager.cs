@@ -43,6 +43,17 @@ public class KeyManager : MonoBehaviour
     void Update()
     {
         this.UpdateInput();
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                Debug.LogError(hit.collider.name);
+            }
+        }
     }
 
     private void FixedUpdate()

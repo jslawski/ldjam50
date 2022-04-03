@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebea00b9f3419b140ab9e4d7ad59a77e, type: 3}
   m_Name: Level4
   m_EditorClassIdentifier: 
+  levelIndex: 3
   sceneName: Level4
   levelName: Secret Level
   difficulty: Insane

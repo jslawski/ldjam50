@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebea00b9f3419b140ab9e4d7ad59a77e, type: 3}
   m_Name: Level3
   m_EditorClassIdentifier: 
-  sceneName: Level3
+  levelIndex: 2
+  sceneName: HardLevel
   levelName: Final Level Name
   difficulty: Hard
   playerScore: 0
