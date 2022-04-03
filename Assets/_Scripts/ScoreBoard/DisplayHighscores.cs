@@ -9,13 +9,14 @@ public class DisplayHighscores : MonoBehaviour
     public TMPro.TextMeshProUGUI[] rScores;
     HighScores myScores;
 
-    void Start() //Fetches the Data at the beginning
+    void OnEnable() //Fetches the Data at the beginning
     {
         for (int i = 0; i < rNames.Length;i ++)
         {
             rNames[i].text = i + 1 + ". Fetching...";
         }
         myScores = GetComponent<HighScores>();
+        StopAllCoroutines();
         StartCoroutine("RefreshHighscores");
     }
     public void SetScoresToMenu(PlayerScore[] highscoreList) //Assigns proper name and score for each text value

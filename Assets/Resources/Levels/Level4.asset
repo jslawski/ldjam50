@@ -16,6 +16,6 @@ MonoBehaviour:
   levelName: Secret Level
   difficulty: Insane
   playerScore: 0
-  privateLeaderboardKey: 
-  publicLeaderboardKey: 
+  privateLeaderboardKey: Jwn8GGp3YU2KfHLbjFVUQgmPNd22io9k6I0JPLEhsywg
+  publicLeaderboardKey: 624932118f40bc123c4bdc19
   imageFileName: level4

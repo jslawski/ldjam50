@@ -47,9 +47,6 @@ public class BalloonPhysics : MonoBehaviour
 
     private bool dead = false;
 
-    public delegate void OnLevelFinished(int score);
-    public static OnLevelFinished LevelFinished;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -257,11 +254,7 @@ public class BalloonPhysics : MonoBehaviour
     {
         if (other.gameObject.tag == "finish")
         {
-            if (LevelFinished != null)
-            {
-                Debug.LogError("Called");
-                LevelFinished(100 - Mathf.CeilToInt(this.airLevel));
-            }
+            GameManager.instance.FinishLevel(this.airLevel, this.maxAirLevel);
         }
     }
 }

@@ -7,27 +7,11 @@ public class FinishLine : MonoBehaviour
     [SerializeField]
     private BoxCollider finishCollider;
     
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        
-        BalloonPhysics.LevelFinished += this.FinishLevel;
-    }
-
-    private void FinishLevel(int score)
-    {
-        Debug.LogError("Yey you win!");
-
-        this.finishCollider.enabled = false;
-
-        HighScores.UploadScore(PlayerPrefs.GetString("name", ""), score);
-
-        BalloonPhysics.LevelFinished -= this.FinishLevel;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (other.gameObject.tag == "player")
+        {
+            this.finishCollider.enabled = false;
+        }
     }
 }

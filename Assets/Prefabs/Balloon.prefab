@@ -4821,7 +4821,7 @@ GameObject:
   - component: {fileID: 1332624572341605592}
   m_Layer: 0
   m_Name: Balloon
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4958,7 +4958,6 @@ MonoBehaviour:
   - {fileID: 3155665571667309177}
   - {fileID: 7994370616557069990}
   deathParticles: {fileID: 208231806391662743}
-  tempAirLevelUI: {fileID: 0}
 --- !u!1 &1494192031236316849
 GameObject:
   m_ObjectHideFlags: 0

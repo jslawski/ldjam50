@@ -24,6 +24,6 @@ public class MenuManager : MonoBehaviour
     public void SaveUsername()
     {
         PlayerPrefs.SetString("name", nameField.text);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("LevelSelect");
     }
 }

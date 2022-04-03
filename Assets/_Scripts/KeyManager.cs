@@ -54,7 +54,7 @@ public class KeyManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         if (Input.GetKeyDown(upperLeft))

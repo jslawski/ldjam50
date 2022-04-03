@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    public static Level[] levelList;
+    public static LevelManager instance;
+
+    public Level[] levelList;
 
     [SerializeField]
     private GameObject levelCardPrefab;
 
     [SerializeField]
     private RectTransform levelParent;
+
+    [SerializeField]
+    private GameObject levelSummaryObject;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
 
     private void Start()
     {
@@ -34,4 +47,10 @@ public class LevelManager : MonoBehaviour
         levelCardComponent.SetupLevelCard(levelList[levelIndex]);
     }
 
+    public void SelectLevel(Level selectedLevel)
+    {
+        LevelSummary levelSummaryComponent = this.levelSummaryObject.GetComponent<LevelSummary>();
+        levelSummaryComponent.SetupLevelSummary(selectedLevel);
+        this.levelSummaryObject.SetActive(true);
+    }
 }
