@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
 
     private bool levelComplete = false;
 
+    [SerializeField]
+    private GameObject endScreenObject;
+
     void Awake()
     {
         if (instance == null)
@@ -46,5 +49,12 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, levelScore);
             HighScores.UploadScore(PlayerPrefs.GetString("name", ""), levelScore);
         }
+    }
+
+    private void SetupEndScreen()
+    {
+        this.endScreenObject.SetActive(true);
+
+
     }
 }

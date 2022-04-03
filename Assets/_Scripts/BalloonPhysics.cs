@@ -41,8 +41,8 @@ public class BalloonPhysics : MonoBehaviour
     private ParticleSystem deathParticles;
 
     private float airLevel = 100f;
-    private float maxAirLevel = 100f;
-    private float drainRate = 0.1f;
+    public float maxAirLevel = 100f;
+    public float drainRate = 0.1f;
     private float deflateRate = 0.5f;
 
     private bool dead = false;
@@ -51,6 +51,7 @@ public class BalloonPhysics : MonoBehaviour
     void Start()
     {
         this.balloonRb.centerOfMass = new Vector3(0.0f, -0.3f, 0.0f);
+        this.airLevel = this.maxAirLevel;
     }
 
     private void Update()
