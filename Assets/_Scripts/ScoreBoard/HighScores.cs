@@ -10,12 +10,14 @@ public class HighScores : MonoBehaviour
 
     public PlayerScore[] scoreList;
     DisplayHighscores myDisplay;
+    DisplayHighscoresLevel myDisplayLevel;
 
     static HighScores instance; //Required for STATIC usability
     void Awake()
     {
         instance = this; //Sets Static Instance
         myDisplay = GetComponent<DisplayHighscores>();
+        myDisplayLevel = GetComponent<DisplayHighscoresLevel>();
     }
     
     public static void UploadScore(string username, int score)  //CALLED when Uploading new Score to WEBSITE
@@ -38,7 +40,7 @@ public class HighScores : MonoBehaviour
 
     public void DownloadScores()
     {
-        StartCoroutine("DatabaseDownload");
+        StartCoroutine("DatabaseDownload");      
     }
     IEnumerator DatabaseDownload()
     {
@@ -49,7 +51,14 @@ public class HighScores : MonoBehaviour
         if (string.IsNullOrEmpty(www.error))
         {
             OrganizeInfo(www.text);
-            myDisplay.SetScoresToMenu(scoreList);
+            if (myDisplay != null)
+            {
+                myDisplay.SetScoresToMenu(scoreList);
+            }
+            if (myDisplayLevel != null)
+            {
+                myDisplayLevel.SetScoresToMenu(scoreList);
+            }
         }
         else print("Error uploading" + www.error);
     }

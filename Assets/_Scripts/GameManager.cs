@@ -15,8 +15,7 @@ public class GameManager : MonoBehaviour
 
     private bool levelComplete = false;
 
-    [SerializeField]
-    private GameObject endScreenObject;
+    private GameObject endScreenPrefab;
 
     void Awake()
     {
@@ -24,6 +23,9 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
+
+        this.timer = 0.0f;
+        this.endScreenPrefab = Resources.Load<GameObject>("EndScreen");
     }
 
     private void FixedUpdate()
@@ -47,8 +49,11 @@ public class GameManager : MonoBehaviour
         if (levelScore > previousScore)
         {
             PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, levelScore);
-            HighScores.UploadScore(PlayerPrefs.GetString("name", ""), levelScore);
         }
+
+        this.SetupEndScreen(levelScore, timeDeduction, airDeduction, currentAirLevel);
+
+        HighScores.UploadScore(PlayerPrefs.GetString("name", "NoName"), levelScore);
     }
 
     public List<int> GetTimerValues()
@@ -67,10 +72,21 @@ public class GameManager : MonoBehaviour
         return timerValues;
     }
 
-    private void SetupEndScreen()
+    public string GetTimerString()
     {
-        this.endScreenObject.SetActive(true);
+        List<int> timerValues = GameManager.instance.GetTimerValues();
 
+        string minutesValue = (timerValues[0] > 9) ? timerValues[0].ToString() : "0" + timerValues[0].ToString();
+        string secondsValue = (timerValues[1] > 9) ? timerValues[1].ToString() : "0" + timerValues[1].ToString();
+        string millisecondsValue = (timerValues[2] > 9) ? timerValues[2].ToString() : "0" + timerValues[2].ToString();
 
+        return minutesValue + ":" + secondsValue + ":" + millisecondsValue;
+    }
+
+    private void SetupEndScreen(int levelScore, int timeDeduction, int airDeduction, float currentAirLevel)
+    {
+        GameObject endScreenObject = GameObject.Instantiate(this.endScreenPrefab);
+        EndScreen endScreenComponent = endScreenObject.GetComponent<EndScreen>();
+        endScreenComponent.SetupEndScreen(levelScore, timeDeduction, airDeduction, currentAirLevel);
     }
 }

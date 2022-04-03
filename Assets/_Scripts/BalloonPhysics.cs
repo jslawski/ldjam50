@@ -46,6 +46,7 @@ public class BalloonPhysics : MonoBehaviour
     private float deflateRate = 0.5f;
 
     private bool dead = false;
+    private bool finished = false;
 
     // Start is called before the first frame update
     void Start()
@@ -73,7 +74,7 @@ public class BalloonPhysics : MonoBehaviour
 
     public void ApplyBalloonPhysics(KeyCode direction)
     {
-        if (this.airLevel < 0 || this.dead == true)
+        if (this.airLevel < 0 || this.dead == true || this.finished == true)
         {
             return;
         }
@@ -116,7 +117,7 @@ public class BalloonPhysics : MonoBehaviour
 
     public void ToggleBalloonParticles(KeyCode direction, bool active)
     {
-        if (this.airLevel < 0 || this.dead == true)
+        if (this.airLevel < 0 || this.dead == true || this.finished == true)
         {
             for (int i = 0; i < this.propulsionParticles.Count; i++)
             {
@@ -253,8 +254,9 @@ public class BalloonPhysics : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "finish")
+        if (other.gameObject.tag == "finish" && this.finished == false)
         {
+            this.finished = true;
             GameManager.instance.FinishLevel(this.airLevel, this.maxAirLevel);
         }
     }

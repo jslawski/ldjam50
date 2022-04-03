@@ -9,7 +9,7 @@ public class FinishLine : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "player")
+        if (other.gameObject.tag == "Player")
         {
             this.finishCollider.enabled = false;
         }

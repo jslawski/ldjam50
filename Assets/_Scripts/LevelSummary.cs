@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 public class LevelSummary : MonoBehaviour
 {
@@ -33,8 +32,8 @@ public class LevelSummary : MonoBehaviour
 
     public void PlayButtonPressed()
     {
-
-        SceneManager.LoadScene(this.associatedLevel.sceneName);
+        LevelManager.instance.levelIndex = this.associatedLevel.levelIndex;
+        LevelManager.instance.LoadLevel(this.associatedLevel.sceneName);
     }
 
     public void BackButtonPressed()
