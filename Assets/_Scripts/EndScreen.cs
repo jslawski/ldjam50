@@ -28,6 +28,12 @@ public class EndScreen : MonoBehaviour
 
     public void SetupEndScreen(int levelScore, int timeContribution, int airContribution, float currentAirLevel)
     {
+        if (SceneLoader.instance.challengeMode == true)
+        {
+            this.SetupChallengeEndScreen(levelScore, timeContribution);
+            return;
+        }
+
         this.timerText.text = GameManager.instance.GetTimerString();
         this.airText.text = Math.Round(currentAirLevel, 2).ToString() + "% Remaining";
 
@@ -40,7 +46,16 @@ public class EndScreen : MonoBehaviour
 
         this.levelName.text = LevelManager.instance.GetCurrentLevel().levelName;
         this.playerName.text = PlayerPrefs.GetString("name", "");
-        this.personalBest.text = levelStatsArray[0];
+
+        if (levelStatsArray.Length > 0)
+        {
+            this.personalBest.text = levelStatsArray[0];
+        }
+        else
+        {
+            this.personalBest.text = levelScore.ToString();
+        }
+
 
         if (LevelManager.instance.levelIndex == LevelManager.instance.levelList.Length - 1)
         {
@@ -48,8 +63,39 @@ public class EndScreen : MonoBehaviour
         }
     }
 
+    private void SetupChallengeEndScreen(int levelScore, int timeContribution)
+    {
+        this.timerText.text = SceneLoader.instance.GetChallengeTimerString();
+        this.airText.text = "";
+        this.airScore.text = "";
+
+        this.timerScore.text = timeContribution.ToString();
+        this.totalScore.text = levelScore.ToString();
+
+        string levelStats = PlayerPrefs.GetString("challenge", "");
+        string[] levelStatsArray = levelStats.Split(',');
+
+        this.levelName.text = "Marathon Challenge";
+        this.playerName.text = PlayerPrefs.GetString("name", "");
+
+        if (levelStatsArray.Length > 0)
+        {
+            this.personalBest.text = levelStatsArray[0];
+        }
+        else
+        {
+            this.personalBest.text = levelScore.ToString();
+        }
+    }
+
     public void RetryButtonPressed()
     {
+        if (SceneLoader.instance.challengeMode == true)
+        {
+            LevelManager.instance.LoadLevel(LevelManager.instance.levelList[0].sceneName);
+            return;
+        }
+
         LevelManager.instance.ReloadLevel();
     }
 
@@ -60,6 +106,8 @@ public class EndScreen : MonoBehaviour
 
     public void LevelSelectButtonPressed()
     {
+        SceneLoader.instance.challengeMode = false;
+
         LevelManager.instance.ReturnToLevelSelect();
     }
 

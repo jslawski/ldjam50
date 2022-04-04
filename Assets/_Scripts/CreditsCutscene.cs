@@ -14,6 +14,7 @@ public class CreditsCutscene : MonoBehaviour
 
     private void Awake()
     {
+        PlayerPrefs.DeleteKey("challenge");
         string filePath = System.IO.Path.Combine(Application.streamingAssetsPath, "creditsCutscene.mp4");
         this.cutscenePlayer.url = filePath;
 

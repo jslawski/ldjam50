@@ -24,6 +24,7 @@ public class MainMenu : MonoBehaviour
 
     public void LevelSelectClicked()
     {
+        SceneLoader.instance.challengeMode = false;
         SceneLoader.instance.LoadScene("LevelSelect");
     }
 
@@ -35,5 +36,17 @@ public class MainMenu : MonoBehaviour
     public void CreditsButtonClicked()
     {
         SceneLoader.instance.LoadScene("EndingClip");
+    }
+
+    public void ChallengeButtonClicked()
+    {
+        Level challengeLevel = Resources.Load<Level>("Challenge");
+
+        HighScores.privateCode = challengeLevel.privateLeaderboardKey;
+        HighScores.publicCode = challengeLevel.publicLeaderboardKey;
+
+        SceneLoader.instance.challengeMode = true;
+        SceneLoader.challengeTimer = 0.0f;
+        SceneLoader.instance.LoadScene("ChallengeMode");
     }
 }

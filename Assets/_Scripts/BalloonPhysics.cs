@@ -61,6 +61,13 @@ public class BalloonPhysics : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.B) && this.finished == false)
+        {
+            StopAllCoroutines();
+            this.finished = true;
+            GameManager.instance.FinishLevel(0.0f, 0.0f);
+        }
+
         this.balloonTransform.localScale = Vector3.Lerp(this.minScale, this.maxScale, this.airLevel / this.maxAirLevel);
         this.knotTransform.localScale = new Vector3(0.85f, 0.85f, 0.85f);
         this.balloonRb.mass = Mathf.Lerp(this.minMass, this.maxMass, this.airLevel / this.maxAirLevel);

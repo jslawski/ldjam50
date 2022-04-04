@@ -25,6 +25,11 @@ public class PregameCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (SceneLoader.instance.challengeMode == true)
+        {
+            return;
+        }
+
         this.balloonTransform = GameObject.Find("Balloon").transform;
         this.originalCameraPosition = Camera.main.transform.position;
 
@@ -81,6 +86,6 @@ public class PregameCamera : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        PlayerPrefs.DeleteKey("tutorial");
+        //PlayerPrefs.DeleteKey("tutorial");
     }
 }

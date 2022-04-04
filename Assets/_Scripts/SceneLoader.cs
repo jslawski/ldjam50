@@ -12,6 +12,10 @@ public class SceneLoader : MonoBehaviour
 
     private FadePanelManager fadeManager;
 
+    public bool challengeMode = false;
+
+    public static float challengeTimer = 0.0f;
+
     private void Awake()
     {
         if (instance == null)
@@ -60,5 +64,44 @@ public class SceneLoader : MonoBehaviour
     public void CloseGame()
     {
         Application.Quit();
+    }
+
+    private void Update()
+    {
+        if (GameManager.instance != null && GameManager.instance.challengeTimerText != null && challengeMode == true)
+        {
+            GameManager.instance.challengeTimerText.text = this.GetChallengeTimerString();
+        }
+        else if (GameManager.instance != null && GameManager.instance.challengeTimerText != null)
+        {
+            GameManager.instance.challengeTimerText.text = "";
+        }
+    }
+
+    public List<int> GetChallengeTimerValues()
+    {
+        List<int> timerValues = new List<int>();
+
+        int minutesValue = Mathf.FloorToInt(challengeTimer / 60f);
+        timerValues.Add(minutesValue);
+
+        int secondsValue = Mathf.FloorToInt(challengeTimer - (minutesValue * 60));
+        timerValues.Add(secondsValue);
+
+        int millisecondsValue = (int)((challengeTimer - (minutesValue * 60) - secondsValue) * 100);
+        timerValues.Add(millisecondsValue);
+
+        return timerValues;
+    }
+
+    public string GetChallengeTimerString()
+    {
+        List<int> timerValues = this.GetChallengeTimerValues();
+
+        string minutesValue = (timerValues[0] > 9) ? timerValues[0].ToString() : "0" + timerValues[0].ToString();
+        string secondsValue = (timerValues[1] > 9) ? timerValues[1].ToString() : "0" + timerValues[1].ToString();
+        string millisecondsValue = (timerValues[2] > 9) ? timerValues[2].ToString() : "0" + timerValues[2].ToString();
+
+        return minutesValue + ":" + secondsValue + ":" + millisecondsValue;
     }
 }

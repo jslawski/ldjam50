@@ -32,7 +32,13 @@ public class LevelSummary : MonoBehaviour
         this.levelDifficulty.text = setupLevel.difficulty;
 
         string levelStats = PlayerPrefs.GetString(setupLevel.sceneName, "");
+        if (SceneLoader.instance.challengeMode == true)
+        {
+            levelStats = PlayerPrefs.GetString("challenge", "");
+        }
+
         string[] levelStatsArray = levelStats.Split(',');
+
 
         this.playerScore.text = (levelStats == "") ? "Unbeaten" : levelStatsArray[0];
 
@@ -41,7 +47,10 @@ public class LevelSummary : MonoBehaviour
         if (levelStats != "")
         {
             this.playerTime.text = levelStatsArray[1];
-            this.playerAir.text = levelStatsArray[2];
+            if (levelStats.Length > 1)
+            {
+                this.playerAir.text = levelStatsArray[2];
+            }
         }
         else
         {
@@ -61,6 +70,19 @@ public class LevelSummary : MonoBehaviour
 
     public void BackButtonPressed()
     {
+        if (SceneLoader.instance.challengeMode == true)
+        {
+            SceneLoader.instance.LoadScene("MainMenu");
+            return;
+        }
+
         this.gameObject.SetActive(false);
+    }
+
+    public void ChallengeButtonPressed()
+    {
+        SceneLoader.instance.challengeMode = true;
+        LevelManager.instance.levelIndex = 0;
+        LevelManager.instance.LoadLevel(LevelManager.instance.levelList[0].sceneName);
     }
 }

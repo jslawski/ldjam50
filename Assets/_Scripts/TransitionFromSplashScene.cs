@@ -32,8 +32,6 @@ public class TransitionFromSplashScene : MonoBehaviour
 
     private void LoadNextScene()
     {
-        PlayerPrefs.DeleteKey("name");
-
         this.fader.OnFadeSequenceComplete -= this.LoadNextScene;
 
         DontDestroyOnLoad(GameObject.Find("SceneLoader"));

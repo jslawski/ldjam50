@@ -42,8 +42,14 @@ public class LevelManager : MonoBehaviour
     }
 
     private void Start()
-    {
+    {       
         levelList = Resources.LoadAll<Level>("Levels");
+
+        if (SceneLoader.instance.challengeMode == true)
+        {
+            this.SelectLevel(Resources.Load<Level>("Challenge"));
+            return;
+        }
 
         this.LoadLevelsIntoScene();
     }

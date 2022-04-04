@@ -45,7 +45,10 @@ public class KeyManager : MonoBehaviour
         this.UpdateInput();
         if (GameManager.instance.preGameComplete == false)
         {
-            this.HandlePregameStates();
+            if (SceneLoader.instance.challengeMode == false)
+            {
+                this.HandlePregameStates();
+            }
             this.UpdatePregameState();
         }
     }
@@ -62,22 +65,30 @@ public class KeyManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            if (SceneLoader.instance.challengeMode == true)
+            {
+                SceneLoader.challengeTimer = 0.0f;
+                SceneLoader.instance.LoadScene("1_Easy");
+            }
+            else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
 
-        if (Input.GetKeyDown(upperLeft))
+        if (Input.GetKey(upperLeft))
         {
             balloonKeys[upperLeft] = true;
         }
-        if (Input.GetKeyDown(lowerLeft))
+        if (Input.GetKey(lowerLeft))
         {
             balloonKeys[lowerLeft] = true;
         }
-        if (Input.GetKeyDown(upperRight))
+        if (Input.GetKey(upperRight))
         {
             balloonKeys[upperRight] = true;
         }
-        if (Input.GetKeyDown(lowerRight))
+        if (Input.GetKey(lowerRight))
         {
             balloonKeys[lowerRight] = true;
         }
@@ -137,6 +148,17 @@ public class KeyManager : MonoBehaviour
 
     void UpdatePregameState()
     {
+        if (SceneLoader.instance.challengeMode == true)
+        {
+            GameManager.instance.preGameComplete = true;
+            foreach (KeyValuePair<KeyCode, bool> entry in this.balloonKeys)
+            {
+                this.pregameKeys[entry.Key].SetActive(false);
+            }
+
+            return;
+        }
+
         bool allKeysHeld = true;
 
         foreach (KeyValuePair<KeyCode, bool> entry in this.balloonKeys)

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour
     private float timer = 0.0f;
 
     private int timeMaxScore = 6666;
+    private int challengeTimeMaxScore = 99999;
     private int airMaxScore = 3333;
     private int timeMultiplier = 80;
 
@@ -27,6 +29,8 @@ public class GameManager : MonoBehaviour
     private GameObject quitCanvas;
     private float fillDelta = 0.02f;
 
+    public TextMeshProUGUI challengeTimerText;
+
     void Awake()
     {
         if (instance == null)
@@ -38,6 +42,7 @@ public class GameManager : MonoBehaviour
         this.endScreenPrefab = Resources.Load<GameObject>("EndScreen");
         this.quitCanvasPrefab = Resources.Load<GameObject>("QuitCanvas");
         this.quitCanvas = GameObject.Instantiate(this.quitCanvasPrefab);
+        this.challengeTimerText = GameObject.Find("ChallengeTimer").GetComponent<TextMeshProUGUI>();
     }
 
     private void Update()
@@ -65,14 +70,21 @@ public class GameManager : MonoBehaviour
         if (this.preGameComplete == true && this.levelComplete == false)
         {
             timer += Time.fixedDeltaTime;
+            SceneLoader.challengeTimer += Time.fixedDeltaTime;
         }
     }
 
     public void FinishLevel(float currentAirLevel, float maxAirLevel)
     {
-        GameObject.Find("QuitCanvas(Clone)").SetActive(false);
-
         this.levelComplete = true;
+
+        if (SceneLoader.instance.challengeMode == true)
+        {
+            this.ChallengeLevelFinished();
+            return;
+        }
+
+        GameObject.Find("QuitCanvas(Clone)").SetActive(false);
 
         int timeDeduction = Mathf.RoundToInt(timer * this.timeMultiplier);
         if (timeDeduction < 0)
@@ -156,6 +168,42 @@ public class GameManager : MonoBehaviour
                 quitImage.fillAmount -= this.fillDelta;
                 yield return new WaitForFixedUpdate();
             }
+        }
+    }
+
+    private void ChallengeLevelFinished()
+    {
+        LevelManager.instance.levelIndex++;
+
+        if (LevelManager.instance.levelIndex < LevelManager.instance.levelList.Length)
+        {
+            SceneLoader.instance.LoadScene(LevelManager.instance.GetCurrentLevel().sceneName);
+        }
+        else
+        {
+            //Show endgame screen
+            int timeDeduction = Mathf.RoundToInt(SceneLoader.challengeTimer * this.timeMultiplier);
+            if (timeDeduction < 0)
+            {
+                timeDeduction = this.challengeTimeMaxScore;
+            }
+
+            int levelScore = (this.challengeTimeMaxScore - timeDeduction);
+
+            string levelStats = PlayerPrefs.GetString("challenge", "");
+            string[] levelStatsArray = levelStats.Split(',');
+
+
+            int previousScore = (levelStats == "") ? 0 : Int32.Parse(levelStatsArray[0]);
+            if (levelScore > previousScore)
+            {
+                string prefsString = levelScore.ToString() + "," + this.GetTimerString() + ",0.0%";
+                PlayerPrefs.SetString("challenge", prefsString);
+            }
+
+            this.SetupEndScreen(levelScore, (this.challengeTimeMaxScore - timeDeduction), 0, 0);
+
+            HighScores.UploadScore(PlayerPrefs.GetString("name", "NoName"), levelScore);
         }
     }
 }
