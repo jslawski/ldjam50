@@ -41,7 +41,7 @@ public class SceneLoader : MonoBehaviour
 
             this.gameMusic.Stop();
         }
-        else if (sceneName != "LevelSelect" && sceneName != "ChallengeMode" && 
+        else if (sceneName != "LevelSelect" && sceneName != "ChallengeMode" &&
             sceneName != "LoginScene" && sceneName != "IntroClip" && sceneName != "EndingClip")
         {
             if (this.gameMusic.isPlaying == false)
@@ -51,6 +51,11 @@ public class SceneLoader : MonoBehaviour
 
             this.menuMusic.Stop();
         }
+        else if (sceneName == "EndingClip")
+        {
+            this.menuMusic.Stop();
+        }
+
 
         this.nextSceneName = sceneName;
 
