@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +20,12 @@ public class GameManager : MonoBehaviour
 
     private GameObject endScreenPrefab;
 
+    private Coroutine quittingCoroutine = null;
+
+    private GameObject quitCanvasPrefab;
+    private GameObject quitCanvas;
+    private float fillDelta = 0.02f;
+
     void Awake()
     {
         if (instance == null)
@@ -28,6 +35,28 @@ public class GameManager : MonoBehaviour
 
         this.timer = 0.0f;
         this.endScreenPrefab = Resources.Load<GameObject>("EndScreen");
+        this.quitCanvasPrefab = Resources.Load<GameObject>("QuitCanvas");
+        this.quitCanvas = GameObject.Instantiate(this.quitCanvasPrefab);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (this.quittingCoroutine == null)
+            {
+                StopAllCoroutines();
+                this.quittingCoroutine = StartCoroutine(QuitSequence(KeyCode.Q));
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (this.quittingCoroutine == null)
+            {
+                StopAllCoroutines();
+                this.quittingCoroutine = StartCoroutine(QuitSequence(KeyCode.Escape));
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -93,5 +122,30 @@ public class GameManager : MonoBehaviour
         GameObject endScreenObject = GameObject.Instantiate(this.endScreenPrefab);
         EndScreen endScreenComponent = endScreenObject.GetComponent<EndScreen>();
         endScreenComponent.SetupEndScreen(levelScore, timeContribution, airContribution, currentAirLevel);
+    }
+
+    IEnumerator QuitSequence(KeyCode pressedKey)
+    {
+        Image quitImage = this.quitCanvas.GetComponentInChildren<Image>();
+
+        while (Input.GetKey(pressedKey) && quitImage.fillAmount < 1)
+        {
+            quitImage.fillAmount += this.fillDelta;
+            yield return new WaitForFixedUpdate();
+        }
+
+        if (Input.GetKey(pressedKey))
+        {
+            SceneManager.LoadScene("LevelSelect");
+        }
+        else
+        {
+            this.quittingCoroutine = null;
+            while (quitImage.fillAmount > 0)
+            {
+                quitImage.fillAmount -= this.fillDelta;
+                yield return new WaitForFixedUpdate();
+            }
+        }
     }
 }
