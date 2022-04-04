@@ -80,6 +80,9 @@ public class LevelManager : MonoBehaviour
     {
         GameObject newLevelCard = GameObject.Instantiate(this.levelCardPrefab, levelParent);
         LevelCard levelCardComponent = newLevelCard.GetComponent<LevelCard>();
+
+        Debug.LogError(levelList[levelIndex].sceneName);
+
         levelCardComponent.SetupLevelCard(levelList[levelIndex]);
     }
 
@@ -135,7 +138,7 @@ public class LevelManager : MonoBehaviour
 
         if (Input.GetKey(pressedKey))
         {
-            SceneManager.LoadScene("LoginScene");
+            SceneManager.LoadScene("MainMenu");
         }
         else
         {

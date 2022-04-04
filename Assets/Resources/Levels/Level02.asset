@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebea00b9f3419b140ab9e4d7ad59a77e, type: 3}
+  m_Name: Level02
+  m_EditorClassIdentifier: 
+  levelIndex: 1
+  sceneName: 2_Easy
+  levelName: Another Test Level
+  difficulty: Easy
+  playerScore: 0
+  privateLeaderboardKey: cS5Dc-pC_kucg5Nai3AAlATBdLEicQX0qA_wZxlas-zA
+  publicLeaderboardKey: 624931db8f40bc123c4bdb82
+  imageFileName: level2

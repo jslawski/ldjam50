@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebea00b9f3419b140ab9e4d7ad59a77e, type: 3}
-  m_Name: Level4
+  m_Name: Level07
   m_EditorClassIdentifier: 
-  levelIndex: 3
-  sceneName: Level4
+  levelIndex: 6
+  sceneName: 7_Medium
   levelName: Secret Level
-  difficulty: Insane
+  difficulty: Medium
   playerScore: 0
-  privateLeaderboardKey: Jwn8GGp3YU2KfHLbjFVUQgmPNd22io9k6I0JPLEhsywg
-  publicLeaderboardKey: 624932118f40bc123c4bdc19
+  privateLeaderboardKey: qMmeRMO82ECRT_QBiTQfOAu7JIEHYKKU28yoglq8VqYA
+  publicLeaderboardKey: 624ad3878f40bc123c4ef636
   imageFileName: level4

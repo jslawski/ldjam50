@@ -615,6 +615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d6cc730b1dacb9418f08eb9c0091316, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSceneName: 
 --- !u!1001 &954627238000858901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -625,6 +626,10 @@ PrefabInstance:
     - target: {fileID: 954627237531684364, guid: f0fbd605655c26549afa7e0501c6bc18, type: 3}
       propertyPath: m_Name
       value: FadePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 954627237531684366, guid: f0fbd605655c26549afa7e0501c6bc18, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 954627237531684366, guid: f0fbd605655c26549afa7e0501c6bc18, type: 3}
       propertyPath: m_RaycastTarget

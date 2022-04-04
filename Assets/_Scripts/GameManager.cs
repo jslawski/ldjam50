@@ -70,6 +70,8 @@ public class GameManager : MonoBehaviour
 
     public void FinishLevel(float currentAirLevel, float maxAirLevel)
     {
+        GameObject.Find("QuitCanvas(Clone)").SetActive(false);
+
         this.levelComplete = true;
 
         int timeDeduction = Mathf.RoundToInt(timer * this.timeMultiplier);
@@ -94,7 +96,7 @@ public class GameManager : MonoBehaviour
         this.SetupEndScreen(levelScore, (this.timeMaxScore - timeDeduction), (int)(this.airMaxScore * (currentAirLevel / 100.0f)), currentAirLevel);
 
         HighScores.UploadScore(PlayerPrefs.GetString("name", "NoName"), levelScore);
-
+        
         LevelManager.instance.CheckGameBeaten();
     }
 

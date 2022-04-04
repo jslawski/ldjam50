@@ -38,8 +38,16 @@ public class LevelSummary : MonoBehaviour
 
         this.playerName.text = PlayerPrefs.GetString("name", "");
 
-        this.playerTime.text = levelStatsArray[1];
-        this.playerAir.text = levelStatsArray[2];
+        if (levelStats != "")
+        {
+            this.playerTime.text = levelStatsArray[1];
+            this.playerAir.text = levelStatsArray[2];
+        }
+        else
+        {
+            this.playerTime.text = "";
+            this.playerAir.text = "";
+        }
 
         HighScores.privateCode = setupLevel.privateLeaderboardKey;
         HighScores.publicCode = setupLevel.publicLeaderboardKey;

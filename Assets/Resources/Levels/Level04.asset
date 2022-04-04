@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebea00b9f3419b140ab9e4d7ad59a77e, type: 3}
-  m_Name: Level1
+  m_Name: Level04
   m_EditorClassIdentifier: 
-  levelIndex: 0
-  sceneName: EasyLevel
-  levelName: Test Level Name
+  levelIndex: 3
+  sceneName: 4_Easy
+  levelName: Secret Level
   difficulty: Easy
   playerScore: 0
-  privateLeaderboardKey: rJsgTn8UikePTlKTiBaCQgBdLIYKh9XkCQeGDM4IpFgA
-  publicLeaderboardKey: 6248df178f40bc123c4b56fd
-  imageFileName: level1
+  privateLeaderboardKey: Jwn8GGp3YU2KfHLbjFVUQgmPNd22io9k6I0JPLEhsywg
+  publicLeaderboardKey: 624932118f40bc123c4bdc19
+  imageFileName: level4
