@@ -11,6 +11,11 @@ public class BalloonPhysics : MonoBehaviour
     private Rigidbody balloonRb;
     [SerializeField]
     private Transform balloonTransform;
+    [SerializeField]
+    private Transform knotTransform;
+    [SerializeField]
+    private Transform ropeHookTransform;
+    private Transform ropeBoneTransform;
 
     private Vector3 downRight = new Vector3(1.0f, -1.0f, 0.0f);
     private Vector3 right = new Vector3(1.0f, 0.0f, 0.0f);
@@ -49,6 +54,24 @@ public class BalloonPhysics : MonoBehaviour
     private bool dead = false;
     private bool finished = false;
 
+    private GameObject ropePrefab;
+    private GameObject ropeObject;
+
+    private LineRenderer ropeLine;
+
+    private void Awake()
+    {
+        this.ropePrefab = Resources.Load<GameObject>("Rope");
+        this.ropeObject = GameObject.Instantiate(this.ropePrefab, this.knotTransform.position, new Quaternion());
+
+        Rigidbody2D[] allBones = this.ropeObject.GetComponentsInChildren<Rigidbody2D>();
+        this.ropeHookTransform = allBones[0].gameObject.transform;
+        this.ropeBoneTransform = allBones[1].gameObject.transform;
+
+        this.ropeLine = this.ropeObject.GetComponent<LineRenderer>();
+        this.ropeHookTransform.position = this.knotTransform.position;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,7 +82,10 @@ public class BalloonPhysics : MonoBehaviour
     private void Update()
     {
         this.balloonTransform.localScale = Vector3.Lerp(this.minScale, this.maxScale, this.airLevel / this.maxAirLevel);
+        this.knotTransform.localScale = new Vector3(0.85f, 0.85f, 0.85f);
         this.balloonRb.mass = Mathf.Lerp(this.minMass, this.maxMass, this.airLevel / this.maxAirLevel);
+
+        this.ConnectRopeToBalloon();
 
         if (this.airLevel < 0 && this.dead == false)
         {
@@ -69,6 +95,11 @@ public class BalloonPhysics : MonoBehaviour
 
             StartCoroutine(ResetLevel());
         }
+    }
+
+    private void FixedUpdate()
+    {
+        this.ropeHookTransform.position = this.knotTransform.position;
     }
 
     public void ApplyBalloonPhysics(KeyCode direction)
@@ -222,5 +253,11 @@ public class BalloonPhysics : MonoBehaviour
             this.finished = true;
             GameManager.instance.FinishLevel(this.airLevel, this.maxAirLevel);
         }
+    }
+
+    private void ConnectRopeToBalloon()
+    {
+        this.ropeLine.SetPosition(0, this.knotTransform.position);
+        this.ropeLine.SetPosition(1, this.ropeBoneTransform.position);
     }
 }
