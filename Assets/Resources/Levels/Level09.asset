@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelIndex: 8
   sceneName: 9_Hard
-  levelName: Secret Level
+  levelName: Volition
   difficulty: Hard
   playerScore: 0
   privateLeaderboardKey: 9nKw1kWQrkipkyNTd5SChwbpCxx6jWoUq4ClgaDtgfQw
   publicLeaderboardKey: 624ad3a98f40bc123c4ef670
-  imageFileName: level4
+  imageFileName: 9

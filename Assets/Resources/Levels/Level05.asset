@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelIndex: 4
   sceneName: 5_Medium
-  levelName: Secret Level
+  levelName: Distant
   difficulty: Medium
   playerScore: 0
   privateLeaderboardKey: blILJ7o4fEOCkaq-qvfU5QiC1bAgnGf0S-thXPF9lePA
   publicLeaderboardKey: 624ad3548f40bc123c4ef5e9
-  imageFileName: level4
+  imageFileName: 5

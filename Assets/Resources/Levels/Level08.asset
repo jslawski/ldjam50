@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelIndex: 7
   sceneName: 8_Medium
-  levelName: Secret Level
+  levelName: Pierce
   difficulty: Medium
   playerScore: 0
   privateLeaderboardKey: 6X3W-Yc_o0WC7q2Qa61gPwI-TwP2z6JEuFuARxF150DQ
   publicLeaderboardKey: 624ad3988f40bc123c4ef652
-  imageFileName: level4
+  imageFileName: 8

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelIndex: 10
   sceneName: 11_Hard
-  levelName: Secret Level
+  levelName: Unfamiliar
   difficulty: Hard
   playerScore: 0
   privateLeaderboardKey: O5MLgHDNBkyT7FtTSVFRdQ1WDbTOXvV0GgpzvDpIjytg
   publicLeaderboardKey: 624ad43b8f40bc123c4ef76d
-  imageFileName: level4
+  imageFileName: 11

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelIndex: 3
   sceneName: 4_Easy
-  levelName: Secret Level
+  levelName: Bypass
   difficulty: Easy
   playerScore: 0
   privateLeaderboardKey: Jwn8GGp3YU2KfHLbjFVUQgmPNd22io9k6I0JPLEhsywg
   publicLeaderboardKey: 624932118f40bc123c4bdc19
-  imageFileName: level4
+  imageFileName: 4

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelIndex: 0
   sceneName: 1_Easy
-  levelName: Test Level Name
+  levelName: Dear Diary
   difficulty: Easy
   playerScore: 0
   privateLeaderboardKey: rJsgTn8UikePTlKTiBaCQgBdLIYKh9XkCQeGDM4IpFgA
   publicLeaderboardKey: 6248df178f40bc123c4b56fd
-  imageFileName: level1
+  imageFileName: 1

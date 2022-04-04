@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelIndex: 5
   sceneName: 6_Medium
-  levelName: Secret Level
+  levelName: Snare
   difficulty: Medium
   playerScore: 0
   privateLeaderboardKey: EmVAC2aXtEK1G-Vb9dUUvAiqR_thG5H0eedJsS1JtOoQ
   publicLeaderboardKey: 624ad3728f40bc123c4ef612
-  imageFileName: level4
+  imageFileName: 6

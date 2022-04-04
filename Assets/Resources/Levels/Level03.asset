@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelIndex: 2
   sceneName: 3_Easy
-  levelName: Final Level Name
+  levelName: Chance Encounter
   difficulty: Easy
   playerScore: 0
   privateLeaderboardKey: djcMqQpFJEGa48YySIYWkQDZImG-Dh3E6l-B62fvGkXQ
   publicLeaderboardKey: 624931f58f40bc123c4bdbcc
-  imageFileName: level3
+  imageFileName: 3

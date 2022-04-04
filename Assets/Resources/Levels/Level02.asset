@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelIndex: 1
   sceneName: 2_Easy
-  levelName: Another Test Level
+  levelName: Lost
   difficulty: Easy
   playerScore: 0
   privateLeaderboardKey: cS5Dc-pC_kucg5Nai3AAlATBdLEicQX0qA_wZxlas-zA
   publicLeaderboardKey: 624931db8f40bc123c4bdb82
-  imageFileName: level2
+  imageFileName: 2

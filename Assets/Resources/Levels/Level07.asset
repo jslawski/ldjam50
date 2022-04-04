@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelIndex: 6
   sceneName: 7_Medium
-  levelName: Secret Level
+  levelName: Narrow
   difficulty: Medium
   playerScore: 0
   privateLeaderboardKey: qMmeRMO82ECRT_QBiTQfOAu7JIEHYKKU28yoglq8VqYA
   publicLeaderboardKey: 624ad3878f40bc123c4ef636
-  imageFileName: level4
+  imageFileName: 7
