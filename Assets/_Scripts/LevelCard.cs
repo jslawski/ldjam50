@@ -23,8 +23,11 @@ public class LevelCard : MonoBehaviour
         this.levelName.text = setupLevel.levelName;
         this.levelImage.sprite = Resources.Load<Sprite>("LevelImages/" + setupLevel.imageFileName);
         this.levelDifficulty.text = setupLevel.difficulty;
-        int playerScore = PlayerPrefs.GetInt(setupLevel.sceneName, 0);
-        this.playerScore.text = (playerScore == 0) ? "Unbeaten" : playerScore.ToString();
+
+        string levelStats = PlayerPrefs.GetString(setupLevel.sceneName, "");
+        string[] levelStatsArray = levelStats.Split(',');
+        
+        this.playerScore.text = (levelStats == "") ? "Unbeaten" : levelStatsArray[2];
     }
 
     public void SelectLevel()

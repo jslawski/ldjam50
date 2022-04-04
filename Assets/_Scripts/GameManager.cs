@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -79,10 +80,15 @@ public class GameManager : MonoBehaviour
 
         int levelScore = (this.timeMaxScore - timeDeduction) + (int)(this.airMaxScore * (currentAirLevel / 100.0f));
 
-        int previousScore = PlayerPrefs.GetInt(SceneManager.GetActiveScene().name, 0);
+        string levelStats = PlayerPrefs.GetString(SceneManager.GetActiveScene().name, "");
+        string[] levelStatsArray = levelStats.Split(',');
+
+
+        int previousScore = (levelStats == "") ? 0 : Int32.Parse(levelStatsArray[0]);
         if (levelScore > previousScore)
         {
-            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, levelScore);
+            string prefsString = levelScore.ToString() + "," + this.GetTimerString() + "," + Math.Round(currentAirLevel, 2).ToString() + "%";
+            PlayerPrefs.SetString(SceneManager.GetActiveScene().name, prefsString);
         }
 
         this.SetupEndScreen(levelScore, (this.timeMaxScore - timeDeduction), (int)(this.airMaxScore * (currentAirLevel / 100.0f)), currentAirLevel);

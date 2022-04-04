@@ -12,7 +12,7 @@ public class MenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //PlayerPrefs.DeleteAll();
     }
 
     // Update is called once per frame
@@ -24,6 +24,6 @@ public class MenuManager : MonoBehaviour
     public void SaveUsername()
     {
         PlayerPrefs.SetString("name", nameField.text);
-        SceneManager.LoadScene("LevelSelect");
+        SceneLoader.instance.LoadScene("MainMenu");
     }
 }

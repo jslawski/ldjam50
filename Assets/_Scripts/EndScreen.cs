@@ -29,6 +29,9 @@ public class EndScreen : MonoBehaviour
         this.airScore.text = airContribution.ToString();
         this.totalScore.text = levelScore.ToString();
 
+        string levelStats = PlayerPrefs.GetString(LevelManager.instance.GetCurrentLevel().sceneName, "");
+        string[] levelStatsArray = levelStats.Split(',');
+
         if (LevelManager.instance.levelIndex == LevelManager.instance.levelList.Length - 1)
         {
             this.nextLevelButton.SetActive(false);

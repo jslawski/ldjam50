@@ -118,6 +118,11 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(MainMenuSceneName);
     }
 
+    public Level GetCurrentLevel()
+    {
+        return this.levelList[this.levelIndex];
+    }
+
     IEnumerator QuitSequence(KeyCode pressedKey)
     {
         Image quitImage = this.quitCanvas.GetComponentInChildren<Image>();
