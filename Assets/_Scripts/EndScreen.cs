@@ -16,6 +16,12 @@ public class EndScreen : MonoBehaviour
     private TextMeshProUGUI airScore;
     [SerializeField]
     private TextMeshProUGUI totalScore;
+    [SerializeField]
+    private TextMeshProUGUI levelName;
+    [SerializeField]
+    private TextMeshProUGUI playerName;
+    [SerializeField]
+    private TextMeshProUGUI personalBest;
 
     [SerializeField]
     private GameObject nextLevelButton;
@@ -31,6 +37,10 @@ public class EndScreen : MonoBehaviour
 
         string levelStats = PlayerPrefs.GetString(LevelManager.instance.GetCurrentLevel().sceneName, "");
         string[] levelStatsArray = levelStats.Split(',');
+
+        this.levelName.text = LevelManager.instance.GetCurrentLevel().levelName;
+        this.playerName.text = PlayerPrefs.GetString("name", "");
+        this.personalBest.text = levelStatsArray[0];
 
         if (LevelManager.instance.levelIndex == LevelManager.instance.levelList.Length - 1)
         {
