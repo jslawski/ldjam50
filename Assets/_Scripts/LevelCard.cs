@@ -29,7 +29,7 @@ public class LevelCard : MonoBehaviour
         string levelStats = PlayerPrefs.GetString(setupLevel.sceneName, "");
         string[] levelStatsArray = levelStats.Split(',');
         
-        this.playerScore.text = (levelStats == "") ? "Unbeaten" : levelStatsArray[2];
+        this.playerScore.text = (levelStats == "") ? "Unbeaten" : levelStatsArray[1];
 
         this.playerName.text = PlayerPrefs.GetString("name", "");
     }

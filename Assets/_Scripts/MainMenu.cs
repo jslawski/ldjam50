@@ -31,4 +31,9 @@ public class MainMenu : MonoBehaviour
     {
         SceneLoader.instance.QuitGame();
     }
+
+    public void CreditsButtonClicked()
+    {
+        SceneLoader.instance.LoadScene("EndingClip");
+    }
 }

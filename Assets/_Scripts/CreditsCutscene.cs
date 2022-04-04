@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
-public class IntroCutscene : MonoBehaviour
+public class CreditsCutscene : MonoBehaviour
 {
     [SerializeField]
     private VideoPlayer cutscenePlayer;
@@ -14,7 +14,7 @@ public class IntroCutscene : MonoBehaviour
 
     private void Awake()
     {
-        string filePath = System.IO.Path.Combine(Application.streamingAssetsPath, "introCutscene.mp4");
+        string filePath = System.IO.Path.Combine(Application.streamingAssetsPath, "creditsCutscene.mp4");
         this.cutscenePlayer.url = filePath;
 
         this.cutscenePlayer.renderMode = VideoRenderMode.RenderTexture;
@@ -59,6 +59,5 @@ public class IntroCutscene : MonoBehaviour
         {
             SceneLoader.instance.LoadScene("MainMenu");
         }
-
     }
 }
