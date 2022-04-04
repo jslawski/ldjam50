@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneLoader : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class SceneLoader : MonoBehaviour
         this.nextSceneName = sceneName;
 
         fadeManager = GameObject.Find("FadePanel").GetComponent<FadePanelManager>();
+        fadeManager.GetComponent<Image>().enabled = true;
         fadeManager.OnFadeSequenceComplete += this.LoadNextScene;
         fadeManager.FadeToBlack();
     }

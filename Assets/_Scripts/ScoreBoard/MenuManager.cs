@@ -3,23 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MenuManager : MonoBehaviour
 {
     [SerializeField]
-    InputField nameField;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //PlayerPrefs.DeleteAll();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    TMP_InputField nameField;
 
     public void SaveUsername()
     {
