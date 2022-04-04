@@ -30,7 +30,7 @@ EditorBuildSettings:
     path: Assets/Scenes/HardLevel.unity
     guid: 6d5371ee8762eb04b821595b9538d716
   - enabled: 1
-    path: Assets/Scenes/MediumLevel.unity
+    path: Assets/Scenes/Cut_MediumLevel.unity
     guid: 59cc8158bf4d5d540aaf3d38d25b6b3d
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
