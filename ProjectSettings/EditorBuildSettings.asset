@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 90527dbfee8fb934aa4a93e9b4b88b7c
+  - enabled: 1
+    path: Assets/Scenes/IntroClip.unity
+    guid: 0051a1c05aeb1c8469244984da0e24e3
   m_configObjects: {}

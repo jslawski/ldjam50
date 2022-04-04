@@ -16,6 +16,8 @@ public class LevelCard : MonoBehaviour
     private TextMeshProUGUI levelDifficulty;
     [SerializeField]
     private TextMeshProUGUI playerScore;
+    [SerializeField]
+    private TextMeshProUGUI playerName;
 
     public void SetupLevelCard(Level setupLevel)
     {
@@ -28,6 +30,8 @@ public class LevelCard : MonoBehaviour
         string[] levelStatsArray = levelStats.Split(',');
         
         this.playerScore.text = (levelStats == "") ? "Unbeaten" : levelStatsArray[2];
+
+        this.playerName.text = PlayerPrefs.GetString("name", "");
     }
 
     public void SelectLevel()

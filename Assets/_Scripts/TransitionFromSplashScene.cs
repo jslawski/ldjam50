@@ -36,17 +36,8 @@ public class TransitionFromSplashScene : MonoBehaviour
 
         this.fader.OnFadeSequenceComplete -= this.LoadNextScene;
 
-        string playerName = PlayerPrefs.GetString("name", "");
-
         DontDestroyOnLoad(GameObject.Find("SceneLoader"));
 
-        if (playerName == "")
-        {
-            SceneLoader.instance.LoadScene("LoginScene");
-        }
-        else
-        {
-            SceneLoader.instance.LoadScene("MainMenu");
-        }
+        SceneLoader.instance.LoadScene("IntroClip");
     }
 }

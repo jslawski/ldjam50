@@ -16,6 +16,12 @@ public class LevelSummary : MonoBehaviour
     private TextMeshProUGUI levelDifficulty;
     [SerializeField]
     private TextMeshProUGUI playerScore;
+    [SerializeField]
+    private TextMeshProUGUI playerName;
+    [SerializeField]
+    private TextMeshProUGUI playerTime;
+    [SerializeField]
+    private TextMeshProUGUI playerAir;
 
     public void SetupLevelSummary(Level setupLevel)
     {
@@ -29,6 +35,11 @@ public class LevelSummary : MonoBehaviour
         string[] levelStatsArray = levelStats.Split(',');
 
         this.playerScore.text = (levelStats == "") ? "Unbeaten" : levelStatsArray[0];
+
+        this.playerName.text = PlayerPrefs.GetString("name", "");
+
+        this.playerTime.text = levelStatsArray[1];
+        this.playerAir.text = levelStatsArray[2];
 
         HighScores.privateCode = setupLevel.privateLeaderboardKey;
         HighScores.publicCode = setupLevel.publicLeaderboardKey;
