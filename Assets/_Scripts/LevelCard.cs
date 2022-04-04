@@ -18,6 +18,9 @@ public class LevelCard : MonoBehaviour
     private TextMeshProUGUI playerScore;
     [SerializeField]
     private TextMeshProUGUI playerName;
+    [SerializeField]
+    private AudioSource selectLevelSound;
+
 
     public void SetupLevelCard(Level setupLevel)
     {
@@ -36,6 +39,7 @@ public class LevelCard : MonoBehaviour
 
     public void SelectLevel()
     {
+        this.selectLevelSound.Play();
         LevelManager.instance.SelectLevel(this.associatedLevel);
     }
 }

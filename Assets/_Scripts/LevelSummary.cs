@@ -22,6 +22,8 @@ public class LevelSummary : MonoBehaviour
     private TextMeshProUGUI playerTime;
     [SerializeField]
     private TextMeshProUGUI playerAir;
+    [SerializeField]
+    private AudioSource confirmSound;
 
     public void SetupLevelSummary(Level setupLevel)
     {
@@ -64,12 +66,15 @@ public class LevelSummary : MonoBehaviour
 
     public void PlayButtonPressed()
     {
+        this.confirmSound.Play();
+
         LevelManager.instance.levelIndex = this.associatedLevel.levelIndex;
         LevelManager.instance.LoadLevel(this.associatedLevel.sceneName);
     }
 
     public void BackButtonPressed()
     {
+        this.confirmSound.Play();
         if (SceneLoader.instance.challengeMode == true)
         {
             SceneLoader.instance.LoadScene("MainMenu");
@@ -81,6 +86,7 @@ public class LevelSummary : MonoBehaviour
 
     public void ChallengeButtonPressed()
     {
+        this.confirmSound.Play();
         SceneLoader.instance.challengeMode = true;
         LevelManager.instance.levelIndex = 0;
         LevelManager.instance.LoadLevel(LevelManager.instance.levelList[0].sceneName);

@@ -113,17 +113,25 @@ public class KeyManager : MonoBehaviour
 
     void ApplyBalloonPhysics()
     {
+        bool allKeysDown = true;
+
         foreach (KeyValuePair<KeyCode, bool> entry in this.balloonKeys)
         {
             if (entry.Value == false)
             {
                 this.bPhysics.ApplyBalloonPhysics(entry.Key);
                 this.bPhysics.ToggleBalloonParticles(entry.Key, true);
+                allKeysDown = false;
             }
             else
             {
                 this.bPhysics.ToggleBalloonParticles(entry.Key, false);
             }
+        }
+
+        if (allKeysDown == true)
+        {
+            BalloonAudio.instance.StopBalloonAir();
         }
 
         this.bPhysics.ApplyBalloonDrag();

@@ -86,6 +86,8 @@ public class EndScreen : MonoBehaviour
         {
             this.personalBest.text = levelScore.ToString();
         }
+
+        this.nextLevelButton.SetActive(false);
     }
 
     public void RetryButtonPressed()

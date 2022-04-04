@@ -16,6 +16,12 @@ public class SceneLoader : MonoBehaviour
 
     public static float challengeTimer = 0.0f;
 
+    [SerializeField]
+    private AudioSource menuMusic;
+
+    [SerializeField]
+    private AudioSource gameMusic;
+
     private void Awake()
     {
         if (instance == null)
@@ -26,6 +32,26 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
+        if (sceneName == "MainMenu" || sceneName == "LevelSelect")
+        {
+            if (this.menuMusic.isPlaying == false)
+            {
+                this.menuMusic.Play();
+            }
+
+            this.gameMusic.Stop();
+        }
+        else if (sceneName != "LevelSelect" && sceneName != "ChallengeMode" && 
+            sceneName != "LoginScene" && sceneName != "IntroClip" && sceneName != "EndingClip")
+        {
+            if (this.gameMusic.isPlaying == false)
+            {
+                this.gameMusic.Play();
+            }
+
+            this.menuMusic.Stop();
+        }
+
         this.nextSceneName = sceneName;
 
         fadeManager = GameObject.Find("FadePanel").GetComponent<FadePanelManager>();

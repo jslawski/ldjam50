@@ -76,6 +76,8 @@ public class BalloonPhysics : MonoBehaviour
 
         if (this.airLevel < 0 && this.dead == false)
         {
+            BalloonAudio.instance.PlayBalloonFail();
+
             this.balloonRb.useGravity = true;
             this.balloonRb.mass = 20f;
             this.dead = true;
@@ -90,6 +92,8 @@ public class BalloonPhysics : MonoBehaviour
         {
             return;
         }
+
+        BalloonAudio.instance.PlayBalloonAir();
 
         switch (direction)
         {
@@ -222,8 +226,13 @@ public class BalloonPhysics : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        BalloonAudio.instance.PlayBalloonHit();
+
         if (collision.gameObject.tag == "hazard")
         {
+            BalloonAudio.instance.PlayBalloonPop();
+            BalloonAudio.instance.PlayBalloonDeflate();
+
             this.KillBalloon(collision.GetContact(0).point);
         }     
     }
