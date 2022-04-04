@@ -5653,6 +5653,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 7373765965361938463, guid: 8159cbf48b9e66a4480ee2b8c054fb3c, type: 3}
+      propertyPath: TrailModule.colorOverLifetime.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373765965361938463, guid: 8159cbf48b9e66a4480ee2b8c054fb3c, type: 3}
+      propertyPath: TrailModule.colorOverLifetime.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373765965361938463, guid: 8159cbf48b9e66a4480ee2b8c054fb3c, type: 3}
+      propertyPath: TrailModule.colorOverLifetime.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8159cbf48b9e66a4480ee2b8c054fb3c, type: 3}
 --- !u!1001 &1032569983
