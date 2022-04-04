@@ -24,10 +24,10 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelSelect.unity
     guid: 01e3926cb6286134c8c11aeece32f3d5
   - enabled: 1
-    path: Assets/Scenes/EasyLevel.unity
+    path: Assets/Scenes/1_Easy.unity
     guid: 4c3ccd9f9e129b040a7e154636c97b30
   - enabled: 1
-    path: Assets/Scenes/HardLevel.unity
+    path: Assets/Scenes/9_Hard.unity
     guid: 6d5371ee8762eb04b821595b9538d716
   - enabled: 1
     path: Assets/Scenes/Cut_MediumLevel.unity
