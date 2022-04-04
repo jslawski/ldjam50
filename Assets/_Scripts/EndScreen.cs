@@ -20,13 +20,13 @@ public class EndScreen : MonoBehaviour
     [SerializeField]
     private GameObject nextLevelButton;
 
-    public void SetupEndScreen(int levelScore, int timeDeduction, int airDeduction, float currentAirLevel)
+    public void SetupEndScreen(int levelScore, int timeContribution, int airContribution, float currentAirLevel)
     {
         this.timerText.text = GameManager.instance.GetTimerString();
         this.airText.text = Math.Round(currentAirLevel, 2).ToString() + "% remaining";
 
-        this.timerScore.text = (levelScore - airDeduction).ToString();
-        this.airScore.text = (levelScore - (levelScore - airDeduction)).ToString();
+        this.timerScore.text = timeContribution.ToString();
+        this.airScore.text = airContribution.ToString();
         this.totalScore.text = levelScore.ToString();
 
         if (LevelManager.instance.levelIndex == LevelManager.instance.levelList.Length - 1)

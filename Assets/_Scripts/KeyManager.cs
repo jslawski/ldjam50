@@ -9,13 +9,11 @@ public class KeyManager : MonoBehaviour
     Dictionary<KeyCode, bool> balloonKeys;
 
     public const KeyCode upperLeft = KeyCode.W;
-    public const KeyCode left = KeyCode.Alpha9;
     public const KeyCode lowerLeft = KeyCode.D;
     public const KeyCode upperRight = KeyCode.O;
-    public const KeyCode right = KeyCode.Alpha0;
     public const KeyCode lowerRight = KeyCode.K;
-    public const KeyCode up = KeyCode.Alpha1;
-    public const KeyCode down = KeyCode.Alpha2;
+
+    private Dictionary<KeyCode, GameObject> pregameKeys;
 
     [SerializeField]
     private BalloonPhysics bPhysics;
@@ -23,42 +21,41 @@ public class KeyManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        CreateDictionary();
+        CreateDictionaries();
     }
 
-    void CreateDictionary()
+    void CreateDictionaries()
     {
         balloonKeys = new Dictionary<KeyCode, bool>();
         balloonKeys.Add(upperLeft, false);
-        balloonKeys.Add(left, false);
         balloonKeys.Add(lowerLeft, false);
         balloonKeys.Add(upperRight, false);
-        balloonKeys.Add(right, false);
         balloonKeys.Add(lowerRight, false);
-        balloonKeys.Add(up, false);
-        balloonKeys.Add(down, false);
+
+        this.pregameKeys = new Dictionary<KeyCode, GameObject>();
+        this.pregameKeys.Add(upperLeft, GameObject.Find("wKey"));
+        this.pregameKeys.Add(lowerLeft, GameObject.Find("dKey"));
+        this.pregameKeys.Add(upperRight, GameObject.Find("oKey"));
+        this.pregameKeys.Add(lowerRight, GameObject.Find("kKey"));
     }
 
     // Update is called once per frame
     void Update()
     {
         this.UpdateInput();
-
-        if (Input.GetMouseButtonDown(0))
+        if (GameManager.instance.preGameComplete == false)
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                Debug.LogError(hit.collider.name);
-            }
+            this.HandlePregameStates();
+            this.UpdatePregameState();
         }
     }
 
     private void FixedUpdate()
     {
-        this.ApplyBalloonPhysics();
+        if (GameManager.instance.preGameComplete == true)
+        {
+            this.ApplyBalloonPhysics();
+        }
     }
 
     void UpdateInput()
@@ -72,10 +69,6 @@ public class KeyManager : MonoBehaviour
         {
             balloonKeys[upperLeft] = true;
         }
-        if (Input.GetKeyDown(left))
-        {
-            balloonKeys[left] = true;
-        }
         if (Input.GetKeyDown(lowerLeft))
         {
             balloonKeys[lowerLeft] = true;
@@ -84,30 +77,14 @@ public class KeyManager : MonoBehaviour
         {
             balloonKeys[upperRight] = true;
         }
-        if (Input.GetKeyDown(right))
-        {
-            balloonKeys[right] = true;
-        }
         if (Input.GetKeyDown(lowerRight))
         {
             balloonKeys[lowerRight] = true;
-        }
-        if (Input.GetKeyDown(up))
-        {
-            balloonKeys[up] = true;
-        }
-        if (Input.GetKeyDown(down))
-        {
-            balloonKeys[down] = true;
         }
 
         if (Input.GetKeyUp(upperLeft))
         {
             balloonKeys[upperLeft] = false;
-        }
-        if (Input.GetKeyUp(left))
-        {
-            balloonKeys[left] = false;
         }
         if (Input.GetKeyUp(lowerLeft))
         {
@@ -117,21 +94,9 @@ public class KeyManager : MonoBehaviour
         {
             balloonKeys[upperRight] = false;
         }
-        if (Input.GetKeyUp(right))
-        {
-            balloonKeys[right] = false;
-        }
         if (Input.GetKeyUp(lowerRight))
         {
             balloonKeys[lowerRight] = false;
-        }
-        if (Input.GetKeyUp(up))
-        {
-            balloonKeys[up] = false;
-        }
-        if (Input.GetKeyUp(down))
-        {
-            balloonKeys[down] = false;
         }
     }
 
@@ -151,5 +116,42 @@ public class KeyManager : MonoBehaviour
         }
 
         this.bPhysics.ApplyBalloonDrag();
+    }
+
+    void HandlePregameStates()
+    {
+        foreach (KeyValuePair<KeyCode, bool> entry in this.balloonKeys)
+        {
+            if (entry.Value == false)
+            {
+                this.bPhysics.ToggleBalloonParticles(entry.Key, true);
+                this.pregameKeys[entry.Key].SetActive(true);
+            }
+            else
+            {
+                this.bPhysics.ToggleBalloonParticles(entry.Key, false);
+                this.pregameKeys[entry.Key].SetActive(false);
+            }
+        }
+    }
+
+    void UpdatePregameState()
+    {
+        bool allKeysHeld = true;
+
+        foreach (KeyValuePair<KeyCode, bool> entry in this.balloonKeys)
+        {
+            if (entry.Value == false)
+            {
+                allKeysHeld = false;
+            }
+        }
+
+        GameManager.instance.preGameComplete = allKeysHeld;
+
+        if (GameManager.instance.preGameComplete == true)
+        {
+            PregameCamera.instance.ZoomOutCamera();
+        }
     }
 }

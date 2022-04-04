@@ -139,17 +139,7 @@ public class BalloonPhysics : MonoBehaviour
                 {
                     this.propulsionParticles[0].Stop();
                 }
-                break;
-            case KeyManager.left:
-                if (active)
-                {
-                    this.propulsionParticles[1].Play();
-                }
-                else
-                {
-                    this.propulsionParticles[1].Stop();
-                }
-                break;
+                break;           
             case KeyManager.lowerLeft:
                 if (active)
                 {
@@ -169,17 +159,7 @@ public class BalloonPhysics : MonoBehaviour
                 {
                     this.propulsionParticles[3].Stop();
                 }
-                break;
-            case KeyManager.right:
-                if (active)
-                {
-                    this.propulsionParticles[4].Play();
-                }
-                else
-                {
-                    this.propulsionParticles[4].Stop();
-                }
-                break;
+                break;            
             case KeyManager.lowerRight:
                 if (active)
                 {
@@ -188,26 +168,6 @@ public class BalloonPhysics : MonoBehaviour
                 else
                 {
                     this.propulsionParticles[5].Stop();
-                }
-                break;
-            case KeyManager.up:
-                if (active)
-                {
-                    this.propulsionParticles[6].Play();
-                }
-                else
-                {
-                    this.propulsionParticles[6].Stop();
-                }
-                break;
-            case KeyManager.down:
-                if (active)
-                {
-                    this.propulsionParticles[7].Play();
-                }
-                else
-                {
-                    this.propulsionParticles[7].Stop();
                 }
                 break;
         }

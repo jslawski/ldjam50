@@ -9,11 +9,13 @@ public class GameManager : MonoBehaviour
 
     private float timer = 0.0f;
 
-    private int maxScore = 9999;
-    private int timeMultiplier = 1;
-    private int airMultiplier = 10;
+    private int timeMaxScore = 6666;
+    private int airMaxScore = 3333;
+    private int timeMultiplier = 80;
 
     private bool levelComplete = false;
+
+    public bool preGameComplete = false;
 
     private GameObject endScreenPrefab;
 
@@ -30,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (this.levelComplete == false)
+        if (this.preGameComplete == true && this.levelComplete == false)
         {
             timer += Time.fixedDeltaTime;
         }
@@ -41,9 +43,12 @@ public class GameManager : MonoBehaviour
         this.levelComplete = true;
 
         int timeDeduction = Mathf.RoundToInt(timer * this.timeMultiplier);
-        int airDeduction = Mathf.RoundToInt((maxAirLevel - currentAirLevel) * airMultiplier);
+        if (timeDeduction < 0)
+        {
+            timeDeduction = this.timeMaxScore;
+        }
 
-        int levelScore = this.maxScore - timeDeduction - airDeduction;
+        int levelScore = (this.timeMaxScore - timeDeduction) + (int)(this.airMaxScore * (currentAirLevel / 100.0f));
 
         int previousScore = PlayerPrefs.GetInt(SceneManager.GetActiveScene().name, 0);
         if (levelScore > previousScore)
@@ -51,7 +56,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, levelScore);
         }
 
-        this.SetupEndScreen(levelScore, timeDeduction, airDeduction, currentAirLevel);
+        this.SetupEndScreen(levelScore, (this.timeMaxScore - timeDeduction), (int)(this.airMaxScore * (currentAirLevel / 100.0f)), currentAirLevel);
 
         HighScores.UploadScore(PlayerPrefs.GetString("name", "NoName"), levelScore);
     }
@@ -83,10 +88,10 @@ public class GameManager : MonoBehaviour
         return minutesValue + ":" + secondsValue + ":" + millisecondsValue;
     }
 
-    private void SetupEndScreen(int levelScore, int timeDeduction, int airDeduction, float currentAirLevel)
+    private void SetupEndScreen(int levelScore, int timeContribution, int airContribution, float currentAirLevel)
     {
         GameObject endScreenObject = GameObject.Instantiate(this.endScreenPrefab);
         EndScreen endScreenComponent = endScreenObject.GetComponent<EndScreen>();
-        endScreenComponent.SetupEndScreen(levelScore, timeDeduction, airDeduction, currentAirLevel);
+        endScreenComponent.SetupEndScreen(levelScore, timeContribution, airContribution, currentAirLevel);
     }
 }
