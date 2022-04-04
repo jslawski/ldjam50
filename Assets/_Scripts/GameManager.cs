@@ -94,6 +94,8 @@ public class GameManager : MonoBehaviour
         this.SetupEndScreen(levelScore, (this.timeMaxScore - timeDeduction), (int)(this.airMaxScore * (currentAirLevel / 100.0f)), currentAirLevel);
 
         HighScores.UploadScore(PlayerPrefs.GetString("name", "NoName"), levelScore);
+
+        LevelManager.instance.CheckGameBeaten();
     }
 
     public List<int> GetTimerValues()

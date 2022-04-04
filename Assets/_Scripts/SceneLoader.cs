@@ -46,4 +46,16 @@ public class SceneLoader : MonoBehaviour
         fadeManager = GameObject.Find("FadePanel").GetComponent<FadePanelManager>();
         fadeManager.FadeFromBlack();
     }
+
+    public void QuitGame()
+    {
+        fadeManager = GameObject.Find("FadePanel").GetComponent<FadePanelManager>();
+        fadeManager.OnFadeSequenceComplete += this.CloseGame;
+        fadeManager.FadeToBlack();
+    }
+
+    public void CloseGame()
+    {
+        Application.Quit();
+    }
 }

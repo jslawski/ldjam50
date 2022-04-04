@@ -147,4 +147,23 @@ public class LevelManager : MonoBehaviour
             }
         }
     }
+
+    public void CheckGameBeaten()
+    {
+        bool gameBeaten = true;
+
+        for (int i = 0; i < this.levelList.Length; i++)
+        {
+            string levelInfo = PlayerPrefs.GetString(this.levelList[i].sceneName, "");
+            if (levelInfo == "")
+            {
+                gameBeaten = false;
+            }
+        }
+
+        if (gameBeaten == true)
+        {
+            PlayerPrefs.SetInt("gameBeaten", 1);
+        }
+    }
 }
