@@ -29,7 +29,7 @@ public class EndScreen : MonoBehaviour
     public void SetupEndScreen(int levelScore, int timeContribution, int airContribution, float currentAirLevel)
     {
         this.timerText.text = GameManager.instance.GetTimerString();
-        this.airText.text = Math.Round(currentAirLevel, 2).ToString() + "% remaining";
+        this.airText.text = Math.Round(currentAirLevel, 2).ToString() + "% Remaining";
 
         this.timerScore.text = timeContribution.ToString();
         this.airScore.text = airContribution.ToString();

@@ -208,7 +208,7 @@ public class BalloonPhysics : MonoBehaviour
     private IEnumerator ResetLevel()
     {
         yield return new WaitForSeconds(2.0f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneLoader.instance.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void OnCollisionEnter(Collision collision)

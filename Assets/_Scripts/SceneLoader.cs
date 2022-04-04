@@ -46,6 +46,7 @@ public class SceneLoader : MonoBehaviour
         }
         
         fadeManager = GameObject.Find("FadePanel").GetComponent<FadePanelManager>();
+        fadeManager.GetComponent<Image>().enabled = true;
         fadeManager.FadeFromBlack();
     }
 

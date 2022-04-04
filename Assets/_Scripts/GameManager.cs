@@ -146,7 +146,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKey(pressedKey))
         {
-            SceneManager.LoadScene("LevelSelect");
+            SceneLoader.instance.LoadScene("LevelSelect");
         }
         else
         {

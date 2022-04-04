@@ -81,8 +81,6 @@ public class LevelManager : MonoBehaviour
         GameObject newLevelCard = GameObject.Instantiate(this.levelCardPrefab, levelParent);
         LevelCard levelCardComponent = newLevelCard.GetComponent<LevelCard>();
 
-        Debug.LogError(levelList[levelIndex].sceneName);
-
         levelCardComponent.SetupLevelCard(levelList[levelIndex]);
     }
 
@@ -95,12 +93,12 @@ public class LevelManager : MonoBehaviour
 
     public void LoadLevel(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        SceneLoader.instance.LoadScene(sceneName);
     }
 
     public void ReloadLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneLoader.instance.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void LoadNextLevel()
@@ -108,17 +106,17 @@ public class LevelManager : MonoBehaviour
         this.levelIndex++;
         HighScores.privateCode = this.levelList[this.levelIndex].privateLeaderboardKey;
         HighScores.publicCode = this.levelList[this.levelIndex].publicLeaderboardKey;
-        SceneManager.LoadScene(this.levelList[this.levelIndex].sceneName);
+        SceneLoader.instance.LoadScene(this.levelList[this.levelIndex].sceneName);
     }
 
     public void ReturnToLevelSelect()
     {
-        SceneManager.LoadScene(LevelSelectSceneName);
+        SceneLoader.instance.LoadScene(LevelSelectSceneName);
     }
 
     public void ReturnToMainMenu()
     {
-        SceneManager.LoadScene(MainMenuSceneName);
+        SceneLoader.instance.LoadScene(MainMenuSceneName);
     }
 
     public Level GetCurrentLevel()
@@ -138,7 +136,7 @@ public class LevelManager : MonoBehaviour
 
         if (Input.GetKey(pressedKey))
         {
-            SceneManager.LoadScene("MainMenu");
+            SceneLoader.instance.LoadScene("MainMenu");
         }
         else
         {
