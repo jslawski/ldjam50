@@ -585,7 +585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
@@ -954,8 +954,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 64615621}
   m_HandleRect: {fileID: 64615620}
   m_Direction: 2
-  m_Value: 0.995401
-  m_Size: 0.46675646
+  m_Value: 0.99540114
+  m_Size: 0.46675652
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1277,10 +1277,10 @@ RectTransform:
   m_Father: {fileID: 260242669}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.08747871, y: 0.9057674}
-  m_AnchorMax: {x: 0.37269464, y: 0.9840147}
+  m_AnchorMin: {x: 0.76237464, y: 0.90863806}
+  m_AnchorMax: {x: 1.0475905, y: 0.98688537}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -0.000030517578, y: -0.000015258789}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1424859093
 MonoBehaviour:
@@ -1329,7 +1329,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34.3
+  m_fontSize: 51.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1435,7 +1435,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 504, y: 630}
+  m_CellSize: {x: 432, y: 540}
   m_Spacing: {x: 10, y: 20}
   m_Constraint: 1
   m_ConstraintCount: 4
