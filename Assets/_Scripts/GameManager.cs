@@ -158,7 +158,14 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKey(pressedKey))
         {
-            SceneLoader.instance.LoadScene("LevelSelect");
+            if (SceneLoader.instance.challengeMode == true)
+            {
+                SceneLoader.instance.LoadScene("ChallengeMode");
+            }
+            else
+            {
+                SceneLoader.instance.LoadScene("LevelSelect");
+            }
         }
         else
         {

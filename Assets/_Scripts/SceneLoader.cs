@@ -107,6 +107,30 @@ public class SceneLoader : MonoBehaviour
         {
             GameManager.instance.challengeTimerText.text = "";
         }
+
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    PlayerPrefs.DeleteAll();
+                    this.LoadScene("LoginScene");
+                }
+
+                if (Input.GetKeyDown(KeyCode.X))
+                {
+                    PlayerPrefs.SetInt("gameBeaten", 1);
+                    this.LoadScene("MainMenu");
+                }
+
+                if (Input.GetKeyDown(KeyCode.M))
+                {
+                    PlayerPrefs.DeleteKey("challenge");
+                    this.LoadScene("MainMenu");
+                }
+            }
+        }
     }
 
     public List<int> GetChallengeTimerValues()

@@ -13,7 +13,8 @@ public class BalloonPhysics : MonoBehaviour
     private Transform balloonTransform;
     [SerializeField]
     private Transform knotTransform;
-
+    [SerializeField]
+    private Collider balloonCollider;
 
     private Vector3 downRight = new Vector3(1.0f, -1.0f, 0.0f);
     private Vector3 right = new Vector3(1.0f, 0.0f, 0.0f);
@@ -242,6 +243,7 @@ public class BalloonPhysics : MonoBehaviour
         if (other.gameObject.tag == "finish" && this.finished == false)
         {
             StopAllCoroutines();
+            this.balloonCollider.enabled = false;
             this.finished = true;
             GameManager.instance.FinishLevel(this.airLevel, this.maxAirLevel);
         }

@@ -68,6 +68,7 @@ public class KeyManager : MonoBehaviour
             if (SceneLoader.instance.challengeMode == true)
             {
                 SceneLoader.challengeTimer = 0.0f;
+                LevelManager.instance.levelIndex = 0;
                 SceneLoader.instance.LoadScene("1_Easy");
             }
             else

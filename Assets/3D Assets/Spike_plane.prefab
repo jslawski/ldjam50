@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3954696174305653803}
   - component: {fileID: 4002153174231658451}
   - component: {fileID: 1403143689659707787}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spike_plane
   m_TagString: hazard
   m_Icon: {fileID: 0}

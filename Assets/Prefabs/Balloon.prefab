@@ -4826,7 +4826,7 @@ GameObject:
   - component: {fileID: 7935447230491098465}
   - component: {fileID: 4809107384221744564}
   - component: {fileID: 6775069491161256321}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Balloon
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -4958,6 +4958,7 @@ MonoBehaviour:
   balloonRb: {fileID: 7319583285516090735}
   balloonTransform: {fileID: 5630723213285285121}
   knotTransform: {fileID: 5287201995213553708}
+  balloonCollider: {fileID: 668056811842513045}
   propulsionParticles:
   - {fileID: 2896816314836505459}
   - {fileID: 1542679827974864081}
@@ -39490,7 +39491,7 @@ GameObject:
   - component: {fileID: 399655174487247032}
   - component: {fileID: 3840977326210167714}
   - component: {fileID: 4946251772730244515}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Knot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39571,7 +39572,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.27
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8299921820602115405
 GameObject:

@@ -37,6 +37,7 @@ public class LevelSummary : MonoBehaviour
         if (SceneLoader.instance.challengeMode == true)
         {
             levelStats = PlayerPrefs.GetString("challenge", "");
+            LevelManager.instance.levelIndex = 0;
         }
 
         string[] levelStatsArray = levelStats.Split(',');
@@ -89,6 +90,6 @@ public class LevelSummary : MonoBehaviour
         this.confirmSound.Play();
         SceneLoader.instance.challengeMode = true;
         LevelManager.instance.levelIndex = 0;
-        LevelManager.instance.LoadLevel(LevelManager.instance.levelList[0].sceneName);
+        LevelManager.instance.LoadLevel(LevelManager.instance.levelList[LevelManager.instance.levelIndex].sceneName);
     }
 }
