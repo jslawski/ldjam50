@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     private GameObject endScreenPrefab;
 
     private Coroutine quittingCoroutine = null;
+    private Coroutine restartingCoroutine = null;
 
     private GameObject quitCanvasPrefab;
     private GameObject quitCanvas;
@@ -43,6 +44,11 @@ public class GameManager : MonoBehaviour
         this.quitCanvasPrefab = Resources.Load<GameObject>("QuitCanvas");
         this.quitCanvas = GameObject.Instantiate(this.quitCanvasPrefab);
         this.challengeTimerText = GameObject.Find("ChallengeTimer").GetComponent<TextMeshProUGUI>();
+
+        if (SceneLoader.instance.challengeMode == true)
+        {
+            GameObject.Find("RestartFrame").GetComponent<Image>().enabled = true;
+        }
     }
 
     private void Update()
@@ -61,6 +67,19 @@ public class GameManager : MonoBehaviour
             {
                 StopAllCoroutines();
                 this.quittingCoroutine = StartCoroutine(QuitSequence(KeyCode.Escape));
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (SceneLoader.instance.challengeMode == true)
+            {
+                StopAllCoroutines();
+                this.restartingCoroutine = StartCoroutine(RestartSequence());                
+            }
+            else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
     }
@@ -173,6 +192,33 @@ public class GameManager : MonoBehaviour
             while (quitImage.fillAmount > 0)
             {
                 quitImage.fillAmount -= this.fillDelta;
+                yield return new WaitForFixedUpdate();
+            }
+        }
+    }
+
+    IEnumerator RestartSequence()
+    {
+        Image restartImage = GameObject.Find("restartImage").GetComponent<Image>();
+
+        while (Input.GetKey(KeyCode.R) && restartImage.fillAmount < 1)
+        {
+            restartImage.fillAmount += this.fillDelta;
+            yield return new WaitForFixedUpdate();
+        }
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            SceneLoader.challengeTimer = 0.0f;
+            LevelManager.instance.levelIndex = 0;
+            SceneLoader.instance.LoadScene("1_Easy");
+        }
+        else
+        {
+            this.restartingCoroutine = null;
+            while (restartImage.fillAmount > 0)
+            {
+                restartImage.fillAmount -= this.fillDelta;
                 yield return new WaitForFixedUpdate();
             }
         }

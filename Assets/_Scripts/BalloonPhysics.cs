@@ -207,13 +207,15 @@ public class BalloonPhysics : MonoBehaviour
         editableShape.rotation = new Vector3(killRotation, (killDirection.x > 0 ? 90.0f : -90.0f), 0.0f);
         this.deathParticles.Play();
 
-        this.balloonRb.AddForce(-killDirection.normalized * 10.0f, ForceMode.Impulse);
+        this.balloonRb.AddForce(-killDirection.normalized * 50.0f, ForceMode.Impulse);
         while (this.airLevel > 0)
         {
             this.airLevel -= this.deflateRate;
 
-            this.balloonRb.AddForceAtPosition(-killDirection.normalized * this.deflateMagnitude,
-            this.balloonTransform.position + (Vector3.up * 5.0f));
+            //this.balloonRb.AddForce(-killDirection.normalized * deflateMagnitude);
+
+            //this.balloonRb.AddForceAtPosition(-killDirection.normalized * this.deflateMagnitude,
+            //this.balloonTransform.position + (Vector3.up * 5.0f));
 
             yield return null;
         }

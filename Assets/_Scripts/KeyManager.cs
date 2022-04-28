@@ -63,20 +63,6 @@ public class KeyManager : MonoBehaviour
 
     void UpdateInput()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            if (SceneLoader.instance.challengeMode == true)
-            {
-                SceneLoader.challengeTimer = 0.0f;
-                LevelManager.instance.levelIndex = 0;
-                SceneLoader.instance.LoadScene("1_Easy");
-            }
-            else
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
-        }
-
         if (Input.GetKey(upperLeft))
         {
             balloonKeys[upperLeft] = true;

@@ -39735,6 +39735,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4935640252448750667, guid: c89c7c6484f15c243a67490ea936a1f0, type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4935640252448750667, guid: c89c7c6484f15c243a67490ea936a1f0, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 0.9339623
       objectReference: {fileID: 0}
